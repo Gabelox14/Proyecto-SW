@@ -2,16 +2,17 @@ import React, { useState, useEffect } from 'react';
 
 function App() {
   const names = ['Montero', 'Angel', 'Ari', 'Gabo', 'Amy'];
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [currentName, setCurrentName] = useState(names[currentIndex]);
+  const [currentNameIndex, setCurrentNameIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % names.length);
+      setCurrentNameIndex((prevIndex) => (prevIndex + 1) % names.length);
     }, 4000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [names.length]);
+
+  const currentName = names[currentNameIndex];
 
   return <div>Hello {currentName}</div>;
 }
