@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Button } from 'react-bootstrap';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import { RiPizzaLine } from 'react-icons/ri';
+import { RiPizzaFill } from 'react-icons/ri';
 import { FaIceCream } from 'react-icons/fa';
 
 const foodItems = [
