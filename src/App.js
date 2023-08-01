@@ -17,7 +17,7 @@ const foodItems = [
     image: 'https://im4g3s.blob.core.windows.net/img-ws/classic-cheese-pizza-recipe-2-64429a0cb408b.jpg',
     price: 12.99,
     category: 'Pizzas',
-    icon: <RiPizzaLine />,
+    icon: <RiPizzaFill />,
   },
   {
     name: 'Ice Cream',
