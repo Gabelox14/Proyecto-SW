@@ -6,6 +6,8 @@
 
 .card-img-top {
   border-radius: 8px 8px 0 0;
+  height: 200px; /* Set the fixed height for the card images */
+  object-fit: cover; /* Maintain the aspect ratio and crop the image if necessary */
 }
 
 .card-title {
