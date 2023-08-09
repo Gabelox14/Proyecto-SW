@@ -24,7 +24,7 @@ const About = () => {
                     </p>
                 </div>
                 <div className="p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center">
-                    <a className="text-brandColor">sample@email.com</a>
+                    <a className="text-brandColor" href="https://example.com" >sample@email.com</a>
                     <p className="leading-normal my-5 text-white">49 Lopez St.
                         <br />Ikeja Lagos, Nigeria
                     </p>
