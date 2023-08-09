@@ -4,13 +4,13 @@ import Cards from './Cards';
 import { list } from '../data';
 import { FaSearch } from "react-icons/fa";
 
-interface CartItem {
-  id: string;
-  img: string;
-  title: string;
-  amount: number;
-  price: number;
-}
+//interface CartItem {
+//  id: string;
+//  img: string;
+//title: string;
+//  amount: number;
+//  price: number;
+//}
 
 interface DetailsProps {
   handleClick: (item: any) => void;
