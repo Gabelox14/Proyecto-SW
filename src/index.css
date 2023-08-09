@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 body {
   margin: 0;
   background: #252837;
@@ -38,7 +37,7 @@ body {
     scroll-behavior: smooth;
   }
 }
-=======
+
 .card {
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -63,4 +62,3 @@ body {
 .btn-primary {
   margin-top: 10px;
 }
->>>>>>> origin/main
