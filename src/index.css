@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body {
   margin: 0;
   background: #252837;
@@ -37,3 +38,29 @@ body {
     scroll-behavior: smooth;
   }
 }
+=======
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+  border-radius: 8px 8px 0 0;
+  height: 200px; /* Set the fixed height for the card images */
+  object-fit: cover; /* Maintain the aspect ratio and crop the image if necessary */
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.card-text {
+  color: #555;
+}
+
+.btn-primary {
+  margin-top: 10px;
+}
+>>>>>>> origin/main

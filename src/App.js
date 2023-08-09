@@ -1,30 +1,28 @@
 import React from 'react';
 import { Card, Button } from 'react-bootstrap';
-import { GiHamburgerMenu } from 'react-icons/gi';
-import { RiPizzaLine } from 'react-icons/ri';
-import { FaIceCream } from 'react-icons/fa';
+
 
 const foodItems = [
   {
     name: 'Hamburger',
     image: 'https://im4g3s.blob.core.windows.net/img-ws/Hamburger_(black_bg).jpg',
     price: 8.99,
-    category: 'Burgers',
-    icon: <GiHamburgerMenu />,
+    category: 'Burgers'
+    
   },
   {
     name: 'Pizza',
     image: 'https://im4g3s.blob.core.windows.net/img-ws/classic-cheese-pizza-recipe-2-64429a0cb408b.jpg',
     price: 12.99,
-    category: 'Pizzas',
-    icon: <RiPizzaLine />,
+    category: 'Pizzas'
+    
   },
   {
     name: 'Ice Cream',
     image: 'https://im4g3s.blob.core.windows.net/img-ws/helado-cono-1-1.jpg',
     price: 4.99,
-    category: 'Desserts',
-    icon: <FaIceCream />,
+    category: 'Desserts'
+    
   },
 ];
 
@@ -40,7 +38,7 @@ function App() {
                 <Card.Title>{food.name}</Card.Title>
                 <Card.Text>Price: ${food.price.toFixed(2)}</Card.Text>
                 <Card.Text>Category: {food.category}</Card.Text>
-                <Button variant="primary">{food.icon} Add to Cart</Button>
+                <Button variant="primary">Add to Cart</Button>
               </Card.Body>
             </Card>
           </div>
