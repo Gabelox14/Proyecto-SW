@@ -7,11 +7,11 @@ import { MdDashboard } from "react-icons/md";
 import { Link } from 'react-router-dom';
 
 
-const Icon = ({ icon }: { icon: JSX.Element }) => (
-  <li>
-    <Link to="/"><p>{icon}</p></Link>
-  </li>
-);
+//const Icon = ({ icon }: { icon: JSX.Element }) => (
+//  <li>
+//    <Link to="/"><p>{icon}</p></Link>
+//  </li>
+//);
 
 function SideBar() {
   return (
