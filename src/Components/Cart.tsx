@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+//import React, { useState, useEffect } from "react";
 import { FaTrash } from "react-icons/fa";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -45,9 +45,9 @@ const Cart = ({ cart, setCart, handleChange }: CartProps) => {
     setPrice(ans);
   };
 
-  useEffect(() => {
-    handlePrice();
-  }, [cart]);
+ // useEffect(() => {
+//handlePrice();
+ // }, [cart]);
 
 
   const config = {
