@@ -90,10 +90,12 @@ function Details({ handleClick }: DetailsProps) {
         <section className="flex flex-row flex-wrap">
           {category.filter(title => {
             if (query === '') {
-              return title;
+              return true;
             } else if (title.title.toLowerCase().includes(query.toLowerCase())) {
-              return title;
+              return false;
             }
+            return false;
+            
           }).map((item) => (
             <Cards key={item.id} item={item} handleClick={handleClick} />
           ))}
