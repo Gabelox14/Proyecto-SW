@@ -52,11 +52,6 @@ This is a food ordering DESKTOP web application. It is NOT optimized for mobile 
 - Logout
 
 
-## App Links 
-Production Link: ()
-
-Project Github Repo Link: (https://github.com/OmaJuliet/PRIME-CUISINE.git)
-
 
 ## Get it on your local machine
 To get this React-Typescript application on your local machine, you need to follow these steps
