@@ -58,9 +58,6 @@ function Login() {
 
     const data = {
       name: "Pedro",
-      email: "ag@gmail.com",
-      address: "casa",
-      phont: "123456"
     };
   console.log(data);
     const endpoint = `/data-api/rest/dbservicios/`;
