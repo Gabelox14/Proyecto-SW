@@ -1,25 +1,25 @@
-import React, { useEffect,useState } from 'react';
+import React, { FormEvent, useEffect,useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import login from '../img/login.png';
 import { useMsal } from '@azure/msal-react';
 
-interface UserData {
-  Name: string,
-  Email: string,
-  Address: string,
-  Phont: string
-};
+// interface UserData {
+//   Name: string,
+//   Email: string,
+//   Address: string,
+//   Phont: string
+// };
 
-async function create(data: UserData) {
-  const endpoint = `/data-api/rest/dbservicios/`;
-  const response = await fetch(endpoint, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
-  });
-  const result = await response.json();
-  console.table(result.value);
-}
+// async function create(data: UserData) {
+//   const endpoint = `/data-api/rest/dbservicios/`;
+//   const response = await fetch(endpoint, {
+//       method: "POST",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify(data)
+//   });
+//   const result = await response.json();
+//   console.table(result.value);
+// }
 
 function Login() {
 
@@ -30,15 +30,36 @@ function Login() {
   const { instance } = useMsal();
   const history = useNavigate(); 
 
-  const handleCreate = async () => {
-    const data: UserData  = {
-        Name: name,
-        Email: email,
-        Address: address,
-        Phont: phone
+  const handleCreate = async (e: FormEvent) => {
+    e.preventDefault();
+
+    const data = {
+      Name: name,
+      Email: email,
+      Address: address,
+      Phone: phone
     };
-    console.log(data);
-    await create(data);
+
+    const endpoint = "/data-api/rest/Person/";
+
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+
+      const result = await response.json();
+      console.table(result.value);
+
+      // Clear the form after successful submission
+      setName('');
+      setEmail('');
+      setAddress('');
+      setPhone('');
+    } catch (error) {
+      console.error("Error submitting data:", error);
+    }
   };
 
   const handleLogin = async () => {
@@ -146,20 +167,23 @@ function Login() {
                   Signup/Login to Your Account
                 </h1>
                 <div>
-            <label htmlFor="name">Name:</label>
-            <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} /><br /><br />
+      <h1>Add Person</h1>
+      <form onSubmit={handleCreate}>
+        <label>Name:</label>
+        <input type="text" value={name} onChange={(e) => setName(e.target.value)} required /><br />
 
-            <label htmlFor="email">Email:</label>
-            <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} /><br /><br />
+        <label>Email:</label>
+        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required /><br />
 
-            <label htmlFor="address">Address:</label>
-            <input type="text" id="address" value={address} onChange={(e) => setAddress(e.target.value)} /><br /><br />
+        <label>Address:</label>
+        <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} required /><br />
 
-            <label htmlFor="phone">Phone:</label>
-            <input type="text" id="phone" value={phone} onChange={(e) => setPhone(e.target.value)} /><br /><br />
+        <label>Phone:</label>
+        <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} required /><br />
 
-            <button onClick={handleCreate}>Submit</button>
-        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
                 <div>
       <button onClick={handleLogin}>Login with Google</button>
     </div>
