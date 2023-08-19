@@ -40,7 +40,7 @@ function Login() {
       Phone: phone
     };
 
-    const endpoint = "/data-api/rest/Person/";
+    const endpoint = "/data-api/rest/dbservicios/";
 
     try {
       const response = await fetch(endpoint, {
