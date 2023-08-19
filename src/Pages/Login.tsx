@@ -37,7 +37,7 @@ function Login() {
         Address: address,
         Phone: phone
     };
-
+    console.log(data);
     await create(data);
   };
 
