@@ -10,6 +10,7 @@ const supabase = createClient(
 
 function Login() {
   const [name, setName] = useState('');
+  const [id, setID] = useState('');
 
   const navigate = useNavigate();
   supabase.auth.onAuthStateChange(async (event) => {
@@ -29,8 +30,8 @@ function Login() {
 
 
   async function get() {
-    const id = 1;
-    const endpoint = `/data-api/rest/dbservicios/Id`;
+    
+    const endpoint = `/data-api/rest/dbservicios/user_id`;
     const response = await fetch(`${endpoint}/${id}`);
     const result = await response.json();
     console.table(result.value);
@@ -39,9 +40,9 @@ function Login() {
 
   async function update() {
 
-    const id = 1;
+    
     const data = {
-      name: "Molly"
+      name: name
     };
   
     const endpoint = '/data-api/rest/dbservicios/Id';
@@ -74,7 +75,7 @@ function Login() {
   
 
   async function del() {
-    const id = 3;
+    
     const endpoint = '/data-api/rest/dbservicios/Id';
     const response = await fetch(`${endpoint}/${id}`, {
       method: "DELETE"
@@ -104,15 +105,17 @@ function Login() {
                 <h1 className="mb-4 text-2xl font-bold text-center text-white">
                   Signup/Login to Your Account
                 </h1>
-                <button type="submit" onClick={create}>Create</button>
-                <button type="submit" onClick={list}>List</button>
-                <button type="submit" onClick={get}>Get</button>
-                <button type="submit" onClick={update}>Update</button>
-                <button type="submit" onClick={del}>Delete</button>
+                <button type="submit" onClick={create}>Create</button><br /><br />
+                <button type="submit" onClick={list}>List</button><br /><br />
+                <button type="submit" onClick={get}>Get</button><br /><br />
+                <button type="submit" onClick={update}>Update</button><br /><br />
+                <button type="submit" onClick={del}>Delete</button><br /><br />
               </div>
               <div>
             <label htmlFor="name">Name:</label>
             <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} /><br /><br />
+            <label htmlFor="name">ID :</label>
+            <input type="text" id="name" value={id} onChange={(e) => setID(e.target.value)} /><br /><br />
             </div>
             </div>
           </div>
