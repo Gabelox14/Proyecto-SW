@@ -31,7 +31,7 @@ function Login() {
 
   async function get() {
     
-    const endpoint = `/data-api/rest/dbservicios/user_id`;
+    const endpoint = `/data-api/rest/dbservicios/Id`;
     const response = await fetch(`${endpoint}/${id}`);
     const result = await response.json();
     console.table(result.value);
