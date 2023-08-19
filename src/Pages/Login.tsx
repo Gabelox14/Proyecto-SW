@@ -4,11 +4,11 @@ import login from '../img/login.png';
 import { useMsal } from '@azure/msal-react';
 
 interface UserData {
-  Name: string;
-  Email: string;
-  Address: string;
-  Phone: string;
-}
+  Name: string,
+  Email: string,
+  Address: string,
+  Phont: string
+};
 
 async function create(data: UserData) {
   const endpoint = `/data-api/rest/dbservicios/`;
@@ -28,14 +28,14 @@ function Login() {
   const [address, setAddress] = useState('');
   const [phone, setPhone] = useState('');
   const { instance } = useMsal();
-  const history = useNavigate(); // Initialize useHistory
+  const history = useNavigate(); 
 
   const handleCreate = async () => {
     const data: UserData  = {
         Name: name,
         Email: email,
         Address: address,
-        Phone: phone
+        Phont: phone
     };
     console.log(data);
     await create(data);
