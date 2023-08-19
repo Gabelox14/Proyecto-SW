@@ -1,12 +1,40 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import login from '../img/login.png';
 import { useMsal } from '@azure/msal-react';
 
 
+
+async function create(data: { Name: string; Email: string; Address: string; Phone: string; }) {
+  const endpoint = `/data-api/rest/dbservicios/`;
+  const response = await fetch(endpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+  });
+  const result = await response.json();
+  console.table(result.value);
+}
+
 function Login() {
+
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [address, setAddress] = useState('');
+  const [phone, setPhone] = useState('');
   const { instance } = useMsal();
   const history = useNavigate(); // Initialize useHistory
+
+  const handleCreate = async () => {
+    const data = {
+        Name: name,
+        Email: email,
+        Address: address,
+        Phone: phone
+    };
+
+    await create(data);
+  };
 
   const handleLogin = async () => {
     const loginRequest = {
@@ -75,23 +103,6 @@ function Login() {
     console.table(result.value);
   }
 
-
-  async function create() {
-
-    const data = {
-      Name: "Pedro"
-    };
-  
-    const endpoint = `/data-api/rest/dbservicios/`;
-    const response = await fetch(endpoint, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
-    });
-    const result = await response.json();
-    console.table(result.value);
-  }
-
   async function del() {
     const id = 3;
     const endpoint = '/data-api/rest/dbservicios/Id';
@@ -114,7 +125,6 @@ function Login() {
     <button id="list" onClick={list}>List</button>
     <button id="get" onClick={get}>Get</button>
     <button id="update" onClick={update}>Update</button>
-    <button id="create" onClick={create}>Create</button>
     <button id="delete" onClick={del}>Delete</button>
 </div>
 
@@ -131,6 +141,21 @@ function Login() {
                   Signup/Login to Your Account
                 </h1>
                 <div>
+            <label htmlFor="name">Name:</label>
+            <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} /><br /><br />
+
+            <label htmlFor="email">Email:</label>
+            <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} /><br /><br />
+
+            <label htmlFor="address">Address:</label>
+            <input type="text" id="address" value={address} onChange={(e) => setAddress(e.target.value)} /><br /><br />
+
+            <label htmlFor="phone">Phone:</label>
+            <input type="text" id="phone" value={phone} onChange={(e) => setPhone(e.target.value)} /><br /><br />
+
+            <button onClick={handleCreate}>Submit</button>
+        </div>
+                <div>
       <button onClick={handleLogin}>Login with Google</button>
     </div>
               </div>
@@ -143,4 +168,3 @@ function Login() {
 }
 
 export default Login;
-

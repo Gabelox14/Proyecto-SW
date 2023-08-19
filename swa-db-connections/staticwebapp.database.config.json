@@ -30,7 +30,7 @@
   },
   "entities": {
     "dbservicios": {
-      "source": "dbo.MyTestPersonTable",
+      "source": "dbo.Usuario",
       "permissions": [
         {
           "actions": ["*"],
