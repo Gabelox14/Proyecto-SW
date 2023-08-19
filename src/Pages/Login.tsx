@@ -3,6 +3,8 @@ import { Auth } from '@supabase/auth-ui-react';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
 import { useNavigate } from 'react-router-dom';
 import login from '../img/login.png';
+import React from 'react';
+import { useMsal } from '@azure/msal-react';
 
 const supabase = createClient(
   'https://amlztwycpfhonwfvzhca.supabase.co',
@@ -83,6 +85,17 @@ function Login() {
     }
   }
 
+  function GoogleAuthButton() {
+    const { instance } = useMsal();
+  
+    const handleLogin = async () => {
+      const loginRequest = {
+        scopes: ['openid', 'profile', 'email'], // Requested scopes
+      };
+  
+      await instance.loginRedirect(loginRequest);
+    };}
+
 
   return (
     <>
@@ -106,12 +119,9 @@ function Login() {
                 <h1 className="mb-4 text-2xl font-bold text-center text-white">
                   Signup/Login to Your Account
                 </h1>
-                <Auth
-                  supabaseClient={supabase}
-                  appearance={{ theme: ThemeSupa }}
-                  theme="light"
-                  providers={["google"]}
-                />
+                <div>
+      <button onClick={GoogleAuthButton}>Login with Google</button>
+    </div>
               </div>
             </div>
           </div>
