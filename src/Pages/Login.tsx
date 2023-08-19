@@ -57,10 +57,10 @@ function Login() {
   async function create() {
 
     const data = {
-      name: "Pedro",
+      Name: "Pedro"
     };
-  console.log(data);
-    const endpoint = `/data-api/rest/dbservicios/`;
+  
+    const endpoint = `/data-api/rest/Person/`;
     const response = await fetch(endpoint, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -68,13 +68,9 @@ function Login() {
     });
     const result = await response.json();
     console.table(result.value);
-
-    if (result === 200) {
-      navigate('/home');
-    } else {
-      navigate('/');
-    }
   }
+
+  
 
   async function del() {
     const id = 3;
