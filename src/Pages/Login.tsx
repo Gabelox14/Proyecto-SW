@@ -60,7 +60,7 @@ function Login() {
       Name: "Pedro"
     };
   
-    const endpoint = `/data-api/rest/Person/`;
+    const endpoint = `/data-api/rest/dbservicios/`;
     const response = await fetch(endpoint, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
