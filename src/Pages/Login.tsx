@@ -11,6 +11,7 @@ const supabase = createClient(
 function Login() {
   const [name, setName] = useState('');
   const [id, setID] = useState('');
+  const [email, setEmail] = useState('');
 
   const navigate = useNavigate();
   supabase.auth.onAuthStateChange(async (event) => {
@@ -42,7 +43,8 @@ function Login() {
 
     
     const data = {
-      name: name
+      name: name,
+      email: email
     };
   
     const endpoint = '/data-api/rest/dbservicios/user_id';
@@ -59,7 +61,8 @@ function Login() {
   async function create() {
 
     const data = {
-      name: name
+      name: name,
+      email: email
     };
   
     const endpoint = `/data-api/rest/dbservicios/`;
@@ -114,6 +117,8 @@ function Login() {
               <div>
             <label htmlFor="name">Name:</label>
             <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} /><br /><br />
+            <label htmlFor="name">Email:</label>
+            <input type="text" id="name" value={email} onChange={(e) => setEmail(e.target.value)} /><br /><br />
             <label htmlFor="name">ID :</label>
             <input type="text" id="name" value={id} onChange={(e) => setID(e.target.value)} /><br /><br />
             </div>
