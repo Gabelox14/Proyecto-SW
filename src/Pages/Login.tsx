@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
-
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import login from '../img/login.png';
 
@@ -9,6 +9,7 @@ const supabase = createClient(
 );
 
 function Login() {
+  const [name, setName] = useState('');
 
   const navigate = useNavigate();
   supabase.auth.onAuthStateChange(async (event) => {
@@ -57,7 +58,7 @@ function Login() {
   async function create() {
 
     const data = {
-      Name: "Pedro"
+      Name: name
     };
   
     const endpoint = `/data-api/rest/dbservicios/`;
@@ -109,6 +110,10 @@ function Login() {
                 <button type="submit" onClick={update}>Update</button>
                 <button type="submit" onClick={del}>Delete</button>
               </div>
+              <div>
+            <label htmlFor="name">Name:</label>
+            <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} /><br /><br />
+            </div>
             </div>
           </div>
         </div>
