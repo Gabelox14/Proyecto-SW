@@ -1,25 +1,45 @@
-import { createClient } from '@supabase/supabase-js';
-import { Auth } from '@supabase/auth-ui-react';
-import { ThemeSupa } from '@supabase/auth-ui-shared';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import login from '../img/login.png';
-import React from 'react';
 import { useMsal } from '@azure/msal-react';
 
-const supabase = createClient(
-  'https://amlztwycpfhonwfvzhca.supabase.co',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFtbHp0d3ljcGZob253ZnZ6aGNhIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzQ0ODI1NTksImV4cCI6MTk5MDA1ODU1OX0.NqV1vbExN3jpY11rTWPN4fEvEw-m5xjNmHVh2GwGIsI'
-);
 
 function Login() {
-  const navigate = useNavigate();
-  supabase.auth.onAuthStateChange(async (event) => {
-    if (event === 'SIGNED_IN') {
-      navigate('/home');
-    } else {
-      navigate('/');
-    }
-  });
+  const { instance } = useMsal();
+  const history = useNavigate(); // Initialize useHistory
+
+  const handleLogin = async () => {
+    const loginRequest = {
+      scopes: ['openid', 'profile', 'email'],
+    };
+
+    await instance.loginRedirect(loginRequest);
+  };
+
+  useEffect(() => {
+    const checkAuthenticationStatus = async () => {
+      const accounts = await instance.getAllAccounts();
+
+      if (accounts.length > 0) {
+        history('/home');
+      } else {
+        history('/');
+      }
+    };
+
+    checkAuthenticationStatus();
+  }, [instance, history]);
+
+
+  // function Login() {
+  //   const navigate = useNavigate();
+  //   supabase.auth.onAuthStateChange(async (event) => {
+  //     if (event === 'SIGNED_IN') {
+  //       navigate('/home');
+  //     } else {
+  //       navigate('/');
+  //     }
+  //   });
 
   async function list() {
     const endpoint = '/data-api/rest/dbservicios';
@@ -85,16 +105,7 @@ function Login() {
     }
   }
 
-  function GoogleAuthButton() {
-    const { instance } = useMsal();
   
-    const handleLogin = async () => {
-      const loginRequest = {
-        scopes: ['openid', 'profile', 'email'], // Requested scopes
-      };
-  
-      await instance.loginRedirect(loginRequest);
-    };}
 
 
   return (
@@ -120,7 +131,7 @@ function Login() {
                   Signup/Login to Your Account
                 </h1>
                 <div>
-      <button onClick={GoogleAuthButton}>Login with Google</button>
+      <button onClick={handleLogin}>Login with Google</button>
     </div>
               </div>
             </div>
