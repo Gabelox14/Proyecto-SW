@@ -20,7 +20,7 @@ function Login() {
   });
 
   async function list() {
-    const endpoint = '/data-api/rest/MyTestPersonTable';
+    const endpoint = '/data-api/rest/dbservicios';
     const response = await fetch(endpoint);
     const data = await response.json();
     console.table(data.value);
@@ -29,7 +29,7 @@ function Login() {
 
   async function get() {
     const id = 1;
-    const endpoint = `/data-api/rest/MyTestPersonTable/Id`;
+    const endpoint = `/data-api/rest/dbservicios/Id`;
     const response = await fetch(`${endpoint}/${id}`);
     const result = await response.json();
     console.table(result.value);
@@ -43,7 +43,7 @@ function Login() {
       Name: "Molly"
     };
   
-    const endpoint = '/data-api/rest/MyTestPersonTable/Id';
+    const endpoint = '/data-api/rest/dbservicios/Id';
     const response = await fetch(`${endpoint}/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -60,7 +60,7 @@ function Login() {
       Name: "Pedro"
     };
   
-    const endpoint = `/data-api/rest/MyTestPersonTable/`;
+    const endpoint = `/data-api/rest/dbservicios/`;
     const response = await fetch(endpoint, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -72,7 +72,7 @@ function Login() {
 
   async function del() {
     const id = 3;
-    const endpoint = '/data-api/rest/MyTestPersonTable/Id';
+    const endpoint = '/data-api/rest/dbservicios/Id';
     const response = await fetch(`${endpoint}/${id}`, {
       method: "DELETE"
     });
