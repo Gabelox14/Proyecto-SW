@@ -72,20 +72,19 @@ function Login() {
 
   async function get() {
     const id = 1;
-    const endpoint = `/data-api/rest/dbservicios/Id`;
-    const response = await fetch(`${endpoint}/${id}`);
+    const endpoint = `/data-api/rest/dbservicios/${id}`; // Corrected endpoint
+    const response = await fetch(endpoint);
     const result = await response.json();
     console.table(result.value);
   }
 
   async function update() {
-    const id = 1;
     const data = {
       Name: 'Molly',
     };
 
-    const endpoint = '/data-api/rest/dbservicios/Id';
-    const response = await fetch(`${endpoint}/${id}`, {
+    const endpoint = '/data-api/rest/dbservicios/1'; // Corrected endpoint
+    const response = await fetch(endpoint, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
@@ -96,8 +95,8 @@ function Login() {
 
   async function del() {
     const id = 3;
-    const endpoint = '/data-api/rest/dbservicios/Id';
-    const response = await fetch(`${endpoint}/${id}`, {
+    const endpoint = `/data-api/rest/dbservicios/${id}`; // Corrected endpoint
+    const response = await fetch(endpoint, {
       method: 'DELETE',
     });
     if (response.ok) {
