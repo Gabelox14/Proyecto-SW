@@ -45,7 +45,7 @@ function Login() {
       name: name
     };
   
-    const endpoint = '/data-api/rest/dbservicios/Id';
+    const endpoint = '/data-api/rest/dbservicios/user_id';
     const response = await fetch(`${endpoint}/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -76,7 +76,7 @@ function Login() {
 
   async function del() {
     
-    const endpoint = '/data-api/rest/dbservicios/Id';
+    const endpoint = '/data-api/rest/dbservicios/user_id';
     const response = await fetch(`${endpoint}/${id}`, {
       method: "DELETE"
     });
