@@ -19,8 +19,81 @@ function Login() {
     }
   });
 
+  async function list() {
+    const endpoint = '/data-api/rest/MyTestPersonTable';
+    const response = await fetch(endpoint);
+    const data = await response.json();
+    console.table(data.value);
+  }
+
+
+  async function get() {
+    const id = 1;
+    const endpoint = `/data-api/rest/MyTestPersonTable/Id`;
+    const response = await fetch(`${endpoint}/${id}`);
+    const result = await response.json();
+    console.table(result.value);
+  }
+  
+
+  async function update() {
+
+    const id = 1;
+    const data = {
+      Name: "Molly"
+    };
+  
+    const endpoint = '/data-api/rest/MyTestPersonTable/Id';
+    const response = await fetch(`${endpoint}/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+    const result = await response.json();
+    console.table(result.value);
+  }
+
+
+  async function create() {
+
+    const data = {
+      Name: "Pedro"
+    };
+  
+    const endpoint = `/data-api/rest/MyTestPersonTable/`;
+    const response = await fetch(endpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+    const result = await response.json();
+    console.table(result.value);
+  }
+
+  async function del() {
+    const id = 3;
+    const endpoint = '/data-api/rest/MyTestPersonTable/Id';
+    const response = await fetch(`${endpoint}/${id}`, {
+      method: "DELETE"
+    });
+    if(response.ok) {
+      console.log(`Record deleted: ${ id }`)
+    } else {
+      console.log(response);
+    }
+  }
+
+
   return (
     <>
+<div>
+    <button id="list" onClick={list}>List</button>
+    <button id="get" onClick={get}>Get</button>
+    <button id="update" onClick={update}>Update</button>
+    <button id="create" onClick={create}>Create</button>
+    <button id="delete" onClick={del}>Delete</button>
+</div>
+
       <div className="container mx-auto flex justify-center py-8 text-white">
         <div className="flex-1 h-full max-w-full md:ml-20 md:mr-16 mt-4 bg-bgColor">
           <div className="flex flex-col md:flex-row">
