@@ -41,7 +41,7 @@ function Login() {
 
     const id = 1;
     const data = {
-      Name: "Molly"
+      name: "Molly"
     };
   
     const endpoint = '/data-api/rest/dbservicios/Id';
@@ -58,7 +58,7 @@ function Login() {
   async function create() {
 
     const data = {
-      Name: name
+      name: name
     };
   
     const endpoint = `/data-api/rest/dbservicios/`;
