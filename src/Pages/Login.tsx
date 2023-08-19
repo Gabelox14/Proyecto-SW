@@ -16,10 +16,10 @@ function Login() {
     event.preventDefault();
 
     const data = {
-      name: name,
-      address: address,
-      phone: phone,
-      email: email,
+      name: "name",
+      address: "address",
+      phone: "phone",
+      email: "email@gmail.com",
     };
 
     try {
