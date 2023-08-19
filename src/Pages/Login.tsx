@@ -3,9 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import login from '../img/login.png';
 import { useMsal } from '@azure/msal-react';
 
+interface UserData {
+  Name: string;
+  Email: string;
+  Address: string;
+  Phone: string;
+}
 
-
-async function create(data: { Name: string; Email: string; Address: string; Phone: string; }) {
+async function create(data: UserData) {
   const endpoint = `/data-api/rest/dbservicios/`;
   const response = await fetch(endpoint, {
       method: "POST",
@@ -26,7 +31,7 @@ function Login() {
   const history = useNavigate(); // Initialize useHistory
 
   const handleCreate = async () => {
-    const data = {
+    const data: UserData  = {
         Name: name,
         Email: email,
         Address: address,
