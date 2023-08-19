@@ -1,66 +1,45 @@
-import React, { FormEvent, useEffect,useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import login from '../img/login.png';
 import { useMsal } from '@azure/msal-react';
 
-// interface UserData {
-//   Name: string,
-//   Email: string,
-//   Address: string,
-//   Phont: string
-// };
-
-// async function create(data: UserData) {
-//   const endpoint = `/data-api/rest/dbservicios/`;
-//   const response = await fetch(endpoint, {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify(data)
-//   });
-//   const result = await response.json();
-//   console.table(result.value);
-// }
-
 function Login() {
-
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [address, setAddress] = useState('');
   const [phone, setPhone] = useState('');
-  const { instance } = useMsal();
-  const history = useNavigate(); 
 
-  const handleCreate = async (e: FormEvent) => {
-    e.preventDefault();
+  const { instance } = useMsal();
+  const history = useNavigate();
+
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
 
     const data = {
-      Name: name,
-      Email: email,
-      Address: address,
-      Phone: phone
+      name: name,
+      address: address,
+      phone: phone,
+      email: email,
     };
 
-    const endpoint = "/data-api/rest/dbservicios/";
-
     try {
-      const response = await fetch(endpoint, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
+      const response = await fetch('/data-api/rest/dbservicios/Usuario', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
       });
 
-      const result = await response.json();
-      console.table(result.value);
-
-      // Clear the form after successful submission
-      setName('');
-      setEmail('');
-      setAddress('');
-      setPhone('');
+      if (response.ok) {
+        console.log('Data successfully added to the database.');
+      } else {
+        console.error('Failed to add data to the database.');
+      }
     } catch (error) {
-      console.error("Error submitting data:", error);
+      console.error('Error:', error);
     }
-  };
+  }
 
   const handleLogin = async () => {
     const loginRequest = {
@@ -84,24 +63,12 @@ function Login() {
     checkAuthenticationStatus();
   }, [instance, history]);
 
-
-  // function Login() {
-  //   const navigate = useNavigate();
-  //   supabase.auth.onAuthStateChange(async (event) => {
-  //     if (event === 'SIGNED_IN') {
-  //       navigate('/home');
-  //     } else {
-  //       navigate('/');
-  //     }
-  //   });
-
   async function list() {
     const endpoint = '/data-api/rest/dbservicios';
     const response = await fetch(endpoint);
     const data = await response.json();
     console.table(data.value);
   }
-
 
   async function get() {
     const id = 1;
@@ -110,20 +77,18 @@ function Login() {
     const result = await response.json();
     console.table(result.value);
   }
-  
 
   async function update() {
-
     const id = 1;
     const data = {
-      Name: "Molly"
+      Name: 'Molly',
     };
-  
+
     const endpoint = '/data-api/rest/dbservicios/Id';
     const response = await fetch(`${endpoint}/${id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
     });
     const result = await response.json();
     console.table(result.value);
@@ -133,33 +98,36 @@ function Login() {
     const id = 3;
     const endpoint = '/data-api/rest/dbservicios/Id';
     const response = await fetch(`${endpoint}/${id}`, {
-      method: "DELETE"
+      method: 'DELETE',
     });
-    if(response.ok) {
-      console.log(`Record deleted: ${ id }`)
+    if (response.ok) {
+      console.log(`Record deleted: ${id}`);
     } else {
       console.log(response);
     }
   }
 
-  
-
-
   return (
     <>
-<div>
-    <button id="list" onClick={list}>List</button>
-    <button id="get" onClick={get}>Get</button>
-    <button id="update" onClick={update}>Update</button>
-    <button id="delete" onClick={del}>Delete</button>
-</div>
-
+      <div>
+        <button id="list" onClick={list}>
+          List
+        </button>
+        <button id="get" onClick={get}>
+          Get
+        </button>
+        <button id="update" onClick={update}>
+          Update
+        </button>
+        <button id="delete" onClick={del}>
+          Delete
+        </button>
+      </div>
       <div className="container mx-auto flex justify-center py-8 text-white">
         <div className="flex-1 h-full max-w-full md:ml-20 md:mr-16 mt-4 bg-bgColor">
           <div className="flex flex-col md:flex-row">
             <div className="h-32 md:h-auto md:w-1/2">
-              <img className="object-cover w-full h-full" src={login}
-                alt="login" />
+              <img className="object-cover w-full h-full" src={login} alt="login" />
             </div>
             <div className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
               <div className="w-72">
@@ -167,26 +135,58 @@ function Login() {
                   Signup/Login to Your Account
                 </h1>
                 <div>
-      <h1>Add Person</h1>
-      <form onSubmit={handleCreate}>
-        <label>Name:</label>
-        <input type="text" value={name} onChange={(e) => setName(e.target.value)} required /><br />
+                  <h1>User Information</h1>
+                  <form onSubmit={handleSubmit}>
+                    <label htmlFor="name">Name:</label>
+                    <input
+                      type="text"
+                      id="name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      required
+                    />
+                    <br />
+                    <br />
 
-        <label>Email:</label>
-        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required /><br />
+                    <label htmlFor="address">Address:</label>
+                    <input
+                      type="text"
+                      id="address"
+                      value={address}
+                      onChange={(e) => setAddress(e.target.value)}
+                      required
+                    />
+                    <br />
+                    <br />
 
-        <label>Address:</label>
-        <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} required /><br />
+                    <label htmlFor="phone">Phone:</label>
+                    <input
+                      type="text"
+                      id="phone"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      required
+                    />
+                    <br />
+                    <br />
 
-        <label>Phone:</label>
-        <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} required /><br />
+                    <label htmlFor="email">Email:</label>
+                    <input
+                      type="email"
+                      id="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                    />
+                    <br />
+                    <br />
 
-        <button type="submit">Submit</button>
-      </form>
-    </div>
+                    <button type="submit">Submit</button>
+                  </form>
+                </div>
                 <div>
-      <button onClick={handleLogin}>Login with Google</button>
-    </div>
+                  <button onClick={handleLogin}>Login with Google</button>
+                </div>
               </div>
             </div>
           </div>
