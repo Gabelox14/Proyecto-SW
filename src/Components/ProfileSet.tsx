@@ -44,7 +44,7 @@ const ProfileSet = () => {
 
   return (
     <>
-      <SideBar />
+      
       <form className="container mx-auto flex flex-col justify-center px-32 mb-20" onSubmit={handleSubmit}>
         <div className="flex flex-col justify-center mb-5 mt-8 gap-y-4">
           <div className="mx-aut flex flex-col items-center gap-2 overflow-hidden">
