@@ -14,22 +14,22 @@ const ProfileSet = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  async function get() {
-    try{
-      const endpoint = `/data-api/rest/dbservicios/user_id`;
-      const response = await fetch(`${endpoint}/${id}`);
-      const result = await response.json();
-      console.table(result.value);
-
-      if (result && result.value) {
-        setFirstName(result.value.firstName); // Adjust the property name as needed
-        setEmail(result.value.email);
-      }
-    } catch (error) {
-      console.error("Error fetching user data:", error);
-    }
-      
-    }
+  //async function get() {
+  //  try{
+  //    const endpoint = `/data-api/rest/dbservicios/user_id`;
+  //    const response = await fetch(`${endpoint}/${id}`);
+  //    const result = await response.json();
+  //    console.table(result.value);
+//
+  //    if (result && result.value) {
+  //      setFirstName(result.value.firstName); // Adjust the property name as needed
+  //      setEmail(result.value.email);
+  //    }
+  //  } catch (error) {
+  //    console.error("Error fetching user data:", error);
+  //  }
+  //    
+  //  }
   
   useEffect(() => {
       

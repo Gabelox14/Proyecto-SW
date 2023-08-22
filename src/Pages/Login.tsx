@@ -7,18 +7,18 @@ import '../login.css';
 
 function Login() {
   const [name, setName] = useState('');
-  const [id, setID] = useState('');
+  const [id] = useState('');
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [password] = useState('');
   const [isNewUser, setIsNewUser] = useState(true);
   const navigate  = useNavigate ();
 
-  async function list() {
-    const endpoint = '/data-api/rest/dbservicios';
-    const response = await fetch(endpoint);
-    const data = await response.json();
-    console.table(data.value);
-  }
+ //async function list() {
+ //  const endpoint = '/data-api/rest/dbservicios';
+ //  const response = await fetch(endpoint);
+ //  const data = await response.json();
+ //  console.table(data.value);
+ //}
 
 
   async function get() {
@@ -43,23 +43,23 @@ function Login() {
   }
   
 
-  async function update() {
-
-    
-    const data = {
-      name: name,
-      email: email
-    };
-  
-    const endpoint = '/data-api/rest/dbservicios/user_id';
-    const response = await fetch(`${endpoint}/${id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
-    });
-    const result = await response.json();
-    console.table(result.value);
-  }
+  //async function update() {
+//
+  //  
+  //  const data = {
+  //    name: name,
+  //    email: email
+  //  };
+  //
+  //  const endpoint = '/data-api/rest/dbservicios/user_id';
+  //  const response = await fetch(`${endpoint}/${id}`, {
+  //    method: "PUT",
+  //    headers: { "Content-Type": "application/json" },
+  //    body: JSON.stringify(data)
+  //  });
+  //  const result = await response.json();
+  //  console.table(result.value);
+  //}
 
 
   async function create() {
@@ -83,18 +83,18 @@ function Login() {
 
   
 
-  async function del() {
-    
-    const endpoint = '/data-api/rest/dbservicios/user_id';
-    const response = await fetch(`${endpoint}/${id}`, {
-      method: "DELETE"
-    });
-    if(response.ok) {
-      console.log(`Record deleted: ${ id }`)
-    } else {
-      console.log(response);
-    }
-  }
+  //async function del() {
+  //  
+  //  const endpoint = '/data-api/rest/dbservicios/user_id';
+  //  const response = await fetch(`${endpoint}/${id}`, {
+  //    method: "DELETE"
+  //  });
+  //  if(response.ok) {
+  //    console.log(`Record deleted: ${ id }`)
+  //  } else {
+  //    console.log(response);
+  //  }
+  //}
 
 
   return (
