@@ -8,7 +8,7 @@ function Login() {
   const [name, setName] = useState('');
   const [id] = useState('');
   const [email, setEmail] = useState('');
-  const [password] = useState('');
+  const [password, setPassword] = useState('');
   const [isNewUser, setIsNewUser] = useState(true);
   const navigate  = useNavigate ();
 
@@ -153,7 +153,7 @@ function Login() {
             type="text"
             id="password"
             value={password}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
             className="w-full border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring focus:border-blue-500"
           />
         </div>
