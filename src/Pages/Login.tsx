@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import bcrypt from 'bcryptjs'; // Import the bcryptjs library
 import '../login.css';
 
 
@@ -63,10 +64,13 @@ function Login() {
 
   async function create() {
 
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+    
     const data = {
       name: name,
       email: email,
-      phone: password
+      password_hash: hashedPassword
     };
   
     const endpoint = `/data-api/rest/dbservicios/`;
