@@ -10,7 +10,7 @@ const ProfileSet = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
-  const [id, setID] = useState('');
+  const [id] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -33,9 +33,9 @@ const ProfileSet = () => {
   
   useEffect(() => {
       
-    if (id) {
-      get();
-    }
+   // if (id) {
+   //   get();
+   //}
 
     const searchParams = new URLSearchParams(location.search);
     const storedFirstName = localStorage.getItem('firstName');
