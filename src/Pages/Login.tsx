@@ -1,27 +1,18 @@
-import { createClient } from '@supabase/supabase-js';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import login from '../img/login.png';
+import '../login.css';
 
-const supabase = createClient(
-  'https://amlztwycpfhonwfvzhca.supabase.co',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFtbHp0d3ljcGZob253ZnZ6aGNhIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzQ0ODI1NTksImV4cCI6MTk5MDA1ODU1OX0.NqV1vbExN3jpY11rTWPN4fEvEw-m5xjNmHVh2GwGIsI'
-);
+
 
 function Login() {
   const [name, setName] = useState('');
   const [id, setID] = useState('');
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isNewUser, setIsNewUser] = useState(true);
+  const navigate  = useNavigate ();
 
-  const navigate = useNavigate();
-  supabase.auth.onAuthStateChange(async (event) => {
-    if (event === 'SIGNED_IN') {
-      navigate('/home');
-    } else {
-      navigate('/');
-    }
-  });
-//TIK TAK  are you from the ghetto?, because I want a piece of that Qlo!!
   async function list() {
     const endpoint = '/data-api/rest/dbservicios';
     const response = await fetch(endpoint);
@@ -36,6 +27,19 @@ function Login() {
     const response = await fetch(`${endpoint}/${id}`);
     const result = await response.json();
     console.table(result.value);
+
+
+
+    const userID = result.value.user.id;
+    sessionStorage.setItem('userID', userID)
+    
+    var storedUserID = sessionStorage.getItem('userID');
+      if (storedUserID) {
+          console.log("ID del usuario almacenado:", storedUserID);
+      } else {
+          console.log("No se encontró ningún ID de usuario almacenado.");
+      }
+    
   }
   
 
@@ -62,7 +66,8 @@ function Login() {
 
     const data = {
       name: name,
-      email: email
+      email: email,
+      pss: password
     };
   
     const endpoint = `/data-api/rest/dbservicios/`;
@@ -73,6 +78,7 @@ function Login() {
     });
     const result = await response.json();
     console.table(result.value);
+    navigate("/home");
   }
 
   
@@ -92,41 +98,104 @@ function Login() {
 
 
   return (
-    <>
-<div>
+    
+    <div className="wrapper">
+  <div className="bg-bgColor bg-white rounded-lg shadow-md p-8 w-full max-w-md">
+    <h1 className="mb-4 text-2xl font-bold text-center text-gray-800">
+      {isNewUser ? 'Signup to Your Account' : 'Login to Your Account'}
+    </h1>
+    <div className="space-y-4">
+      {!isNewUser && (
+        <div>
+
+      <label htmlFor="email">Email:</label>
+      <input
+        type="text"
+        id="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        className="w-full border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring focus:border-blue-500"
+      />
+
+          <label htmlFor="pssw">Password:</label>
+          <input
+            type="text"
+            id="password"
+            value={password}
+            onChange={(e) => setName(e.target.value)}
+            className="w-full border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring focus:border-blue-500"
+          />
+        </div>
+      )}
+
+{isNewUser && (
+        <div>
+
+<label htmlFor="name">Name:</label>
+      <input
+        type="text"
+        id="name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        className="w-full border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring focus:border-blue-500"
+      />
+
+      <label htmlFor="email">Email:</label>
+      <input
+        type="text"
+        id="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        className="w-full border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring focus:border-blue-500"
+      />
+
+          <label htmlFor="pssw">Password:</label>
+          <input
+            type="text"
+            id="password"
+            value={password}
+            onChange={(e) => setName(e.target.value)}
+            className="w-full border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring focus:border-blue-500"
+          />
+        </div>
+      )}
+
+    </div>
+
+    <div className="mt-6 space-x-2 flex justify-center">
+      {isNewUser ? (
+        <button
+          type="button"
+          onClick={create}
+          className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring"
+        >
+          Signup
+        </button>
+      ) : (
+        <button
+          type="button"
+          onClick={get}
+          className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring"
+        >
+          Login
+        </button>
+      )}
+
+    </div>
+    <p className="mt-4 text-center">
+      {isNewUser
+        ? 'Already have an account?'
+        : "Don't have an account yet?"}
+      <span
+        className="cursor-pointer text-blue-500 hover:underline"
+        onClick={() => setIsNewUser(!isNewUser)}
+      >
+        {isNewUser ? 'Login here' : 'Signup here'}
+      </span>
+    </p>
+  </div>
 </div>
 
-      <div className="container mx-auto flex justify-center py-8 text-white">
-        <div className="flex-1 h-full max-w-full md:ml-20 md:mr-16 mt-4 bg-bgColor">
-          <div className="flex flex-col md:flex-row">
-            <div className="h-32 md:h-auto md:w-1/2">
-              <img className="object-cover w-full h-full" src={login}
-                alt="login" />
-            </div>
-            <div className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
-              <div className="w-72">
-                <h1 className="mb-4 text-2xl font-bold text-center text-white">
-                  Signup/Login to Your Account
-                </h1>
-                <button type="submit" onClick={create}>Create</button><br /><br />
-                <button type="submit" onClick={list}>List</button><br /><br />
-                <button type="submit" onClick={get}>Get</button><br /><br />
-                <button type="submit" onClick={update}>Update</button><br /><br />
-                <button type="submit" onClick={del}>Delete</button><br /><br />
-              </div>
-              <div>
-            <label htmlFor="name">Name:</label>
-            <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} /><br /><br />
-            <label htmlFor="name">Email:</label>
-            <input type="text" id="name" value={email} onChange={(e) => setEmail(e.target.value)} /><br /><br />
-            <label htmlFor="name">ID :</label>
-            <input type="text" id="name" value={id} onChange={(e) => setID(e.target.value)} /><br /><br />
-            </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
   );
 }
 

@@ -42,6 +42,7 @@ const Profile = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
+  const [id] = useState('');
 
   const location = useLocation();
 
@@ -56,6 +57,27 @@ const Profile = () => {
     setEmail(searchParams.get('email') || storedEmail || '');
   }, [location]);
 
+  
+
+    
+  async function update() {
+
+    
+    const data = {
+      name: firstName + " "+ lastName,
+      email: email
+    };
+  
+    const endpoint = '/data-api/rest/dbservicios/user_id';
+    const response = await fetch(`${endpoint}/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+    const result = await response.json();
+    console.table(result.value);
+  }
+
   return (
     <>
       <SideBar />
@@ -66,7 +88,7 @@ const Profile = () => {
               <p className="profile-loc">First Name: {firstName}</p>
               <p className="profile-loc">Last Name: {lastName}</p>
               <p className="profile-loc">Email: {email}</p>
-              <Link to="/settings"><button className="animated-btn mt-6">Update profile</button></Link>
+              <Link to="/settings"><button className="animated-btn mt-6" onClick={update}>Update profile</button></Link>
             </section>
         </section>
       </section>
