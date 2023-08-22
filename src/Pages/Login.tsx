@@ -65,8 +65,8 @@ function Login() {
 
     const data = {
       name: name,
-      email: email,
-      password_hash: password
+      email: email
+      //password_hash: password
     };
   
     const endpoint = `/data-api/rest/dbservicios/`;
