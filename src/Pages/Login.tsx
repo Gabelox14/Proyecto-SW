@@ -21,7 +21,7 @@ function Login() {
       navigate('/');
     }
   });
-
+//TIK TAK  are you from the ghetto?, because I want a piece of that Qlo!!
   async function list() {
     const endpoint = '/data-api/rest/dbservicios';
     const response = await fetch(endpoint);

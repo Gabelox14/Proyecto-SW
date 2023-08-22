@@ -37,6 +37,51 @@
           "role": "anonymous"
         }
       ]
+    },
+    "dishservicios": {
+      "source": "dbo.Dish",
+      "permissions": [
+        {
+          "actions": ["*"],
+          "role": "anonymous"
+        }
+      ]
+    },
+    "ordersservicios": {
+      "source": "dbo.Orders",
+      "permissions": [
+        {
+          "actions": ["*"],
+          "role": "anonymous"
+        }
+      ]
+    },
+    "paymentservicios": {
+      "source": "dbo.Payment",
+      "permissions": [
+        {
+          "actions": ["*"],
+          "role": "anonymous"
+        }
+      ]
+    },
+    "restaurantservicios": {
+      "source": "dbo.Restaurant",
+      "permissions": [
+        {
+          "actions": ["*"],
+          "role": "anonymous"
+        }
+      ]
+    },
+    "shoppingcartservicios": {
+      "source": "dbo.ShoppingCart",
+      "permissions": [
+        {
+          "actions": ["*"],
+          "role": "anonymous"
+        }
+      ]
     }
   }
 }

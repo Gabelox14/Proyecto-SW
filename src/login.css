@@ -1,0 +1,17 @@
+/* styles.css */
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin-left: 38vw;
+}
+
+.bgColor {
+  background-color: rgb(204, 26, 26); /* Replace with your desired background color */
+  width: 200px; /* Set the width of the box */
+  height: 200px; /* Set the height of the box */
+}
+
+/* Add any additional custom styles here */

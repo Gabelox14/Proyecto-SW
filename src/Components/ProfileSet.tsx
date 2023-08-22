@@ -4,15 +4,39 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { RxPerson } from 'react-icons/rx';
 
 
+
+
 const ProfileSet = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
-
+  const [id, setID] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
 
+  async function get() {
+    try{
+      const endpoint = `/data-api/rest/dbservicios/user_id`;
+      const response = await fetch(`${endpoint}/${id}`);
+      const result = await response.json();
+      console.table(result.value);
+
+      if (result && result.value) {
+        setFirstName(result.value.firstName); // Adjust the property name as needed
+        setEmail(result.value.email);
+      }
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+      
+    }
+  
   useEffect(() => {
+      
+    if (id) {
+      get();
+    }
+
     const searchParams = new URLSearchParams(location.search);
     const storedFirstName = localStorage.getItem('firstName');
     const storedLastName = localStorage.getItem('lastName');
@@ -40,7 +64,27 @@ const ProfileSet = () => {
       search: `?${searchParams.toString()}`,
     });
 
+
   };
+
+
+  async function update() {
+
+    
+    const data = {
+      name: firstName +" "+ lastName,
+      email: email
+    };
+  
+    const endpoint = '/data-api/rest/dbservicios/user_id';
+    const response = await fetch(`${endpoint}/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+    const result = await response.json();
+    console.table(result.value);
+  }
 
   return (
     <>
@@ -98,7 +142,7 @@ const ProfileSet = () => {
             />
           </div>
         </div>
-        <button type="submit" className="animated-btn px-[6rem] mx-auto py-[0.9rem] bg-brnadColor text-white rounded-[5px] flex">
+        <button type="submit" onClick={update} className="animated-btn px-[6rem] mx-auto py-[0.9rem] bg-brnadColor text-white rounded-[5px] flex" >
           Apply profile settings
         </button>
       </form>
