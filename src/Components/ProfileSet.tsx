@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import SideBar from '../Components/SideBar';
+//import SideBar from '../Components/SideBar';
 import { RxPerson } from 'react-icons/rx';
 
 
