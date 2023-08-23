@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import '../login.css';
 
 
-
 function Login() {
   const [name, setName] = useState('');
   const [id] = useState('');
@@ -59,23 +58,15 @@ function Login() {
   //  const result = await response.json();
   //  console.table(result.value);
   //}
- // const [binaryData, setBinaryData] = useState('');
-  //const convertToVarBinary = () => {
-    // Convert the input value to a VARBINARY(64) representation
-  //  const textEncoder = new TextEncoder();
-  //  const encodedData = textEncoder.encode(password);
-  //  const varBinaryData = encodedData.slice(0, 64); // Ensure it's no more than 64 bytes
-//
- //   setBinaryData(Array.from(varBinaryData).map(byte => byte.toString(16).padStart(2, '0')).join(''));
- // };
+ 
 
   async function create() {
 
     const textEncoder = new TextEncoder();
-    const binaryData = textEncoder.encode(password);
-
+    //const binaryData = textEncoder.encode(password);
+    const binaryData = Buffer.from(password, 'hex');
     // Convert binary data to hex format
-    const hexData = Array.from(binaryData).map(byte => ('00' + byte.toString(16)).slice(-2)).join('');
+    //const hexData = Array.from(binaryData).map(byte => ('00' + byte.toString(16)).slice(-2)).join('');
 
     // Send the hex data to your backend for database insertion
 
@@ -84,7 +75,7 @@ function Login() {
     const data = {
       name: name,
       email: email,
-      password_hash: hexData
+      password_hash: { binaryData }
     };
     console.table(data);
     const endpoint = `/data-api/rest/dbservicios/`;
