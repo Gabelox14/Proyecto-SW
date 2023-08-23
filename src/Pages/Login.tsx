@@ -62,21 +62,17 @@ function Login() {
 
   async function create() {
 
-    const textEncoder = new TextEncoder();
-      const binaryData = textEncoder.encode(password);
-      const passwordHash = Array.from(binaryData)
-      .map(byte => byte.toString(16).padStart(2, '0'))
-      .join('');
-    // Send the hex data to your backend for database insertion
-
-    //const hashedPassword = await hashPassword(password);
-    //convertToVarBinary();
+    
     const data = {
       name: name,
       email: email,
+<<<<<<< HEAD
       password_hash: Array.from(passwordHash) //btoa(password) => convierte base 64
+=======
+      password: password
+>>>>>>> 87259aa830a3729950f7d9043a98c81903c308dc
     };
-    console.table(data);
+    //console.table(data);
     const endpoint = `/data-api/rest/dbservicios/`;
     const response = await fetch(endpoint, {
       method: "POST",
@@ -84,7 +80,7 @@ function Login() {
       body: JSON.stringify(data)
     });
     const result = await response.json();
-    console.table(result.value);
+    //console.table(result.value);
     navigate("/home");
   }
 
