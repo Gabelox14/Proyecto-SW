@@ -30,8 +30,10 @@ function Login() {
       var storedUserID = sessionStorage.getItem("userID");
       if (storedUserID) {
         console.log("ID del usuario almacenado:", storedUserID);
+        break;
       } else {
         console.log("No se encontró ningún ID de usuario almacenado.");
+        break;
       }
     }
   }
