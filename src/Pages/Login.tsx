@@ -21,14 +21,14 @@ function Login() {
 
   async function get() {
     
-    const endpoint = `/data-api/rest/dbservicios/user_id`;
-    const response = await fetch(`${endpoint}/${id}`);
+    const endpoint = `/data-api/rest/dbservicios/`;
+    const response = await fetch(`${endpoint}`);
     const result = await response.json();
     console.table(result.value);
 
 
 
-    const userID = result.value.user.id;
+    const userID = result.value.email;
     sessionStorage.setItem('userID', userID)
     
     var storedUserID = sessionStorage.getItem('userID');
@@ -66,7 +66,11 @@ function Login() {
     const data = {
       name: name,
       email: email,
+<<<<<<< HEAD
+      password_hash: Array.from(passwordHash) //btoa(password) => convierte base 64
+=======
       password: password
+>>>>>>> 87259aa830a3729950f7d9043a98c81903c308dc
     };
     //console.table(data);
     const endpoint = `/data-api/rest/dbservicios/`;
