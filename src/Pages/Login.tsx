@@ -64,7 +64,9 @@ function Login() {
 
     const textEncoder = new TextEncoder();
       const binaryData = textEncoder.encode(password);
-
+      const passwordHash = Array.from(binaryData)
+      .map(byte => byte.toString(16).padStart(2, '0'))
+      .join('');
     // Send the hex data to your backend for database insertion
 
     //const hashedPassword = await hashPassword(password);
@@ -72,7 +74,7 @@ function Login() {
     const data = {
       name: name,
       email: email,
-      password_hash: Array.from(binaryData)
+      password_hash: Array.from(passwordHash)
     };
     console.table(data);
     const endpoint = `/data-api/rest/dbservicios/`;
