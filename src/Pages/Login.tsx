@@ -26,16 +26,14 @@ function Login() {
     const userID = result.value[0];
     sessionStorage.setItem("userID", userID);
 
-    while (userID.email === email) {
-      var storedUserID = sessionStorage.getItem("userID");
-      break;
-      if (storedUserID) {
-        console.log("ID del usuario almacenado:", storedUserID);
-        break;
-      } else {
-        console.log("No se encontró ningún ID de usuario almacenado.");
-        break;
-      }
+    if (userID.email === email) {
+      console.log("ID del usuario almacenado:", email);
+      // var storedUserID = sessionStorage.getItem("userID");
+      // if (storedUserID) {
+      //   console.log("ID del usuario almacenado:", storedUserID);
+      // } else {
+      //   console.log("No se encontró ningún ID de usuario almacenado.");
+      // }
     }
   }
 
