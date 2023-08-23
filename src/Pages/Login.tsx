@@ -71,20 +71,20 @@ function Login() {
 
   async function create() {
 
-    // Convert the input text to binary data (for example, UTF-8 encoding)
     const textEncoder = new TextEncoder();
     const binaryData = textEncoder.encode(password);
 
-    // Create a typed array to ensure it's exactly 64 bytes (assuming UTF-8 encoding)
-    const paddedBinaryData = new Uint8Array(64);
-    paddedBinaryData.set(binaryData);
+    // Convert binary data to hex format
+    const hexData = Array.from(binaryData).map(byte => ('00' + byte.toString(16)).slice(-2)).join('');
+
+    // Send the hex data to your backend for database insertion
 
     //const hashedPassword = await hashPassword(password);
     //convertToVarBinary();
     const data = {
       name: name,
       email: email,
-      password_hash: paddedBinaryData
+      password_hash: hexData
     };
     console.table(data);
     const endpoint = `/data-api/rest/dbservicios/`;
