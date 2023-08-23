@@ -64,11 +64,11 @@ function Login() {
   async function create() {
 
     //const hashedPassword = await hashPassword(password);
-    //const binaryData = new TextEncoder().encode(password);
+    const binaryData = new TextEncoder().encode(password);
     const data = {
       name: name,
       email: email,
-      password_hash: password
+      password_hash: binaryData
     };
     console.table(data);
     const endpoint = `/data-api/rest/dbservicios/`;
