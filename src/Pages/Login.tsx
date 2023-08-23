@@ -72,13 +72,13 @@ function Login() {
   async function create() {
 
     const hashedPassword = await hashPassword(password);
-    
+    const binaryData = new TextEncoder().encode(password);
     const data = {
       name: name,
       email: email,
-      password_hash: hashedPassword
+      password_hash: password
     };
-  
+    console.table(data);
     const endpoint = `/data-api/rest/dbservicios/`;
     const response = await fetch(endpoint, {
       method: "POST",
@@ -131,7 +131,7 @@ function Login() {
             type="text"
             id="password"
             value={password}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
             className="w-full border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring focus:border-blue-500"
           />
         </div>
