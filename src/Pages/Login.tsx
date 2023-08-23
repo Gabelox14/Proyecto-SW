@@ -5,7 +5,7 @@ import '../login.css';
 
 function Login() {
   const [name, setName] = useState('');
-  const [id] = useState('');
+  // const [id] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isNewUser, setIsNewUser] = useState(true);
@@ -27,13 +27,17 @@ function Login() {
     console.table(result.value);
 
 
+    
 
     const userID = result.value.email;
     sessionStorage.setItem('userID', userID)
     
-    var storedUserID = sessionStorage.getItem('userID');
+
+    while(userID === email){
+      var storedUserID = sessionStorage.getItem('userID');
       if (storedUserID) {
           console.log("ID del usuario almacenado:", storedUserID);
+
       } else {
           console.log("No se encontró ningún ID de usuario almacenado.");
       }
@@ -66,11 +70,7 @@ function Login() {
     const data = {
       name: name,
       email: email,
-<<<<<<< HEAD
       password_hash: Array.from(passwordHash) //btoa(password) => convierte base 64
-=======
-      password: password
->>>>>>> 87259aa830a3729950f7d9043a98c81903c308dc
     };
     //console.table(data);
     const endpoint = `/data-api/rest/dbservicios/`;
@@ -79,7 +79,7 @@ function Login() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)
     });
-    //const result = await response.json();
+    const result = await response.json();
     //console.table(result.value);
     navigate("/home");
   }
