@@ -1,4 +1,3 @@
-//import React, { useState, useEffect } from "react";
 import React, { useState, useEffect} from "react";
 import { FaTrash } from "react-icons/fa";
 import { ToastContainer, toast } from 'react-toastify';
@@ -21,10 +20,6 @@ interface CartProps {
   setCart: React.Dispatch<React.SetStateAction<CartItem[]>>;
 
   handleChange: (item: CartItem, value: number) => void
-   
-  
-  
-  
 }
 
 const Cart = ({ cart, setCart, handleChange }: CartProps) => {
@@ -32,8 +27,8 @@ const Cart = ({ cart, setCart, handleChange }: CartProps) => {
   
   useEffect(() => {
     handlePrice();
-   }, [cart]);
- 
+   });
+
  
   const handleRemove = (id: string) => {
     const arr = cart.filter((item) => item.id !== id);
