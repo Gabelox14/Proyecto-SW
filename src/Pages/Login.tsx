@@ -68,7 +68,7 @@ function Login() {
       email: email,
       password: password
     };
-    console.table(data);
+    //console.table(data);
     const endpoint = `/data-api/rest/dbservicios/`;
     const response = await fetch(endpoint, {
       method: "POST",
@@ -76,7 +76,7 @@ function Login() {
       body: JSON.stringify(data)
     });
     const result = await response.json();
-    console.table(result.value);
+    //console.table(result.value);
     navigate("/home");
   }
 
