@@ -7,6 +7,12 @@
     },
     "connection-string": "@env('Server=tcp:serverserviciossql.database.windows.net,1433;Initial Catalog=dbservicios;Persist Security Info=False;User ID=adminserviciossql;Password=123Queso;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;')"
   },
+  "resolve": {
+    "fallback": {
+      "crypto":"crypto-browserify"
+    }
+  }
+  ,
   "runtime": {
     "rest": {
       "enabled": true,
