@@ -5,7 +5,11 @@ import '../login.css';
 
 function Login() {
   const [name, setName] = useState('');
+<<<<<<< HEAD
   // const [id] = useState('');
+=======
+  //const [id] = useState('');
+>>>>>>> e932057c205d876f563e53bd69543703dae24c4d
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isNewUser, setIsNewUser] = useState(true);
@@ -70,7 +74,11 @@ function Login() {
     const data = {
       name: name,
       email: email,
+<<<<<<< HEAD
       password_hash: Array.from(passwordHash) //btoa(password) => convierte base 64
+=======
+      password: password
+>>>>>>> e932057c205d876f563e53bd69543703dae24c4d
     };
     //console.table(data);
     const endpoint = `/data-api/rest/dbservicios/`;
@@ -80,7 +88,11 @@ function Login() {
       body: JSON.stringify(data)
     });
     const result = await response.json();
+<<<<<<< HEAD
     //console.table(result.value);
+=======
+    console.table(result.value);
+>>>>>>> e932057c205d876f563e53bd69543703dae24c4d
     navigate("/home");
   }
 
