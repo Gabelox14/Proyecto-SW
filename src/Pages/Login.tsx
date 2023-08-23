@@ -60,14 +60,6 @@ function Login() {
   //  console.table(result.value);
   //}
 
-  const hashPassword = async (inputPassword: string | undefined) => {
-    const encoder = new TextEncoder();
-    const data = encoder.encode(inputPassword);
-    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    const hashedPassword = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
-    return hashedPassword;
-  };
 
   async function create() {
 
