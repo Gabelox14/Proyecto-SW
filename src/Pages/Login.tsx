@@ -66,11 +66,7 @@ function Login() {
     const data = {
       name: name,
       email: email,
-<<<<<<< HEAD
-      password_hash: Array.from(passwordHash) //btoa(password) => convierte base 64
-=======
       password: password
->>>>>>> 87259aa830a3729950f7d9043a98c81903c308dc
     };
     //console.table(data);
     const endpoint = `/data-api/rest/dbservicios/`;
