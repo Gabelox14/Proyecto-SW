@@ -59,15 +59,15 @@ function Login() {
   //  const result = await response.json();
   //  console.table(result.value);
   //}
-  const [binaryData, setBinaryData] = useState('');
-  const convertToVarBinary = () => {
+ // const [binaryData, setBinaryData] = useState('');
+  //const convertToVarBinary = () => {
     // Convert the input value to a VARBINARY(64) representation
-    const textEncoder = new TextEncoder();
-    const encodedData = textEncoder.encode(password);
-    const varBinaryData = encodedData.slice(0, 64); // Ensure it's no more than 64 bytes
-
-    setBinaryData(Array.from(varBinaryData).map(byte => byte.toString(16).padStart(2, '0')).join(''));
-  };
+  //  const textEncoder = new TextEncoder();
+  //  const encodedData = textEncoder.encode(password);
+  //  const varBinaryData = encodedData.slice(0, 64); // Ensure it's no more than 64 bytes
+//
+ //   setBinaryData(Array.from(varBinaryData).map(byte => byte.toString(16).padStart(2, '0')).join(''));
+ // };
 
   async function create() {
 
