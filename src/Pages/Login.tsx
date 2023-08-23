@@ -23,7 +23,7 @@ function Login() {
     const result = await response.json();
     console.table(result.value);
 
-    const userID = result.value.email;
+    const userID = result.value[0];
     sessionStorage.setItem("userID", userID);
 
     while (userID === email) {
