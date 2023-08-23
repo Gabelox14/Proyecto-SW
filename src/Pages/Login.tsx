@@ -26,7 +26,7 @@ function Login() {
     const userID = result.value[0];
     sessionStorage.setItem("userID", userID);
 
-    while (userID === email) {
+    while (userID.email === email) {
       var storedUserID = sessionStorage.getItem("userID");
       if (storedUserID) {
         console.log("ID del usuario almacenado:", storedUserID);
