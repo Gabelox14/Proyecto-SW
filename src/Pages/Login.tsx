@@ -62,7 +62,7 @@ function Login() {
 
   async function create() {
 
-    const textEncoder = new TextEncoder();
+    //const textEncoder = new TextEncoder();
     //const binaryData = textEncoder.encode(password);
     const binaryData = Buffer.from(password, 'hex');
     // Convert binary data to hex format
