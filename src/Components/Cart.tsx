@@ -1,11 +1,12 @@
 //import React, { useState, useEffect } from "react";
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import { FaTrash } from "react-icons/fa";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import question from "../img/user.png";
 import { usePaystackPayment } from 'react-paystack';
 import "../styles/checkoutBtn.css";
+
 
 interface CartItem {
   id: string;
@@ -18,13 +19,20 @@ interface CartItem {
 interface CartProps {
   cart: CartItem[];
   setCart: React.Dispatch<React.SetStateAction<CartItem[]>>;
-  handleChange: (item: CartItem, value: number) => void;
+
+  handleChange: (item: CartItem, value: number) => void
+   
+  
+  
   
 }
 
 const Cart = ({ cart, setCart, handleChange }: CartProps) => {
   const [price, setPrice] = useState(0);
   
+  useEffect(() => {
+    handlePrice();
+   }, [cart]);
  
  
   const handleRemove = (id: string) => {
@@ -43,17 +51,15 @@ const Cart = ({ cart, setCart, handleChange }: CartProps) => {
     });
   };
 
-  const handlePrice = () => {
+  const handlePrice = (): void => {
     let ans = 0;
     cart.forEach((item) => (ans += item.amount * item.price));
     setPrice(ans);
   };
 
-  handlePrice();
+  
 
-  //useEffect(() => {
- //  handlePrice();
- //}, [cart]);
+
   
 
   const config = {
