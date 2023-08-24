@@ -68,14 +68,14 @@ const CrudTableWithApi = () => {
 
   const handleUpdate = async () => {
 
-   // const data = {
-   //     dish_id: formData.dish_id,
-   //     imgURL: formData.imgURL,
-   //     title: formData.title,
-   //     price: formData.price,
-   //     kind: formData.kind, 
-   //     amount: formData.amount
-   //   };
+    const data = {
+        dish_id: formData.dish_id,
+        imgURL: formData.imgURL,
+        title: formData.title,
+        price: formData.price,
+        kind: formData.kind, 
+        amount: formData.amount
+      };
 
     try {
       const response = await fetch(`/data-api/rest/dishservicios/${formData.dish_id}`, {
@@ -83,7 +83,7 @@ const CrudTableWithApi = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(data),
       });
       if (response.ok) {
         fetchData(); // Refresh data after updating
