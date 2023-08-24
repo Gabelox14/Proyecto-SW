@@ -5,16 +5,16 @@ import { useLocation } from 'react-router-dom';
 
 
 function TopSect({ setShow, size }: { setShow: (value: boolean) => void; size: number }) {
-  const [name, setFirstName] = useState('');
+  const [userID, setFirstName] = useState('');
 
   const location = useLocation();
 
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
-    const storedFirstName = localStorage.getItem('name');
+    const storedFirstName = sessionStorage.getItem('userID');
 
-    setFirstName(searchParams.get('name') || storedFirstName || '');
+    setFirstName(searchParams.get('userID') || storedFirstName || '');
   }, [location]);
 
 
@@ -22,7 +22,7 @@ function TopSect({ setShow, size }: { setShow: (value: boolean) => void; size: n
     <>
         <div className="flex justify-between items-center px-8 pt-2 pb-4 text-white sticky w-full top-0 z-50 bg-bgColor shadow-lg border-b-[2px] border-bgColor">
           <div className="flex justify-center items-center relative">
-            <p className="font-semibold text-base">Hello {name}👋</p>
+            <p className="font-semibold text-base">Hello {userID}👋</p>
           </div>
 
           <div className="flex flex-row flex-wrap text-white">
