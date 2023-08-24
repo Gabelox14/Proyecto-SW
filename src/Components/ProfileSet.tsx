@@ -38,9 +38,9 @@ const ProfileSet = () => {
    //}
 
     const searchParams = new URLSearchParams(location.search);
-    const storedFirstName = localStorage.getItem('userName');
-    const storedLastName = localStorage.getItem('lastName');
-    const storedEmail = localStorage.getItem('userEmail');
+    const storedFirstName = sessionStorage.getItem('userName');
+    const storedLastName = sessionStorage.getItem('lastName');
+    const storedEmail = sessionStorage.getItem('userEmail');
 
     setFirstName(storedFirstName || searchParams.get('userName') || '');
     setLastName(storedLastName || searchParams.get('lastName') || '');
@@ -54,9 +54,9 @@ const ProfileSet = () => {
     searchParams.set('lastName', lastName);
     searchParams.set('userEmail', userEmail);
 
-    localStorage.setItem('userName', userName);
-    localStorage.setItem('lastName', lastName);
-    localStorage.setItem('userEmail', userEmail);
+    sessionStorage.setItem('userName', userName);
+    sessionStorage.setItem('lastName', lastName);
+    sessionStorage.setItem('userEmail', userEmail);
 
 
     navigate({

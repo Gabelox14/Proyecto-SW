@@ -48,9 +48,9 @@ const Profile = () => {
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
-    const storedFirstName = localStorage.getItem('userName');
-    const storedLastName = localStorage.getItem('lastName');
-    const storedEmail = localStorage.getItem('userEmail');
+    const storedFirstName = sessionStorage.getItem('userName');
+    const storedLastName = sessionStorage.getItem('lastName');
+    const storedEmail = sessionStorage.getItem('userEmail');
 
     setFirstName(searchParams.get('userName') || storedFirstName || '');
     setLastName(searchParams.get('lastName') || storedLastName || '');
