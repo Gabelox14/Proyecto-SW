@@ -20,8 +20,12 @@ const Security = () => {
 
   async function update() {
     const storedID = sessionStorage.getItem('userID');
+    const storedFirstName = sessionStorage.getItem('userName');
+    const storedEmail = sessionStorage.getItem('userEmail');
     
     const data = {
+      name: storedFirstName,
+      email: storedEmail,
       password: newpassword
     };
   
