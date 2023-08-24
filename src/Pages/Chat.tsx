@@ -82,7 +82,7 @@ const CrudTableWithApi = () => {
       };
 
     try {
-      const response = await fetch(`/data-api/rest/dishservicios/dish_id/${dish_id}`, {
+      const response = await fetch(`/data-api/rest/dishservicios/${dish_id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
