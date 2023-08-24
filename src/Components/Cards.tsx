@@ -17,8 +17,8 @@ const Cards = ({ item, handleClick }: { item: Item, handleClick: (item: Item) =>
     
     async function get() {
         try{
-            const endpoint = '/data-api/rest/dishservicios/';
-            const response = await fetch(endpoint);
+            const endpointDish = '/data-api/rest/dishservicios/';
+            const response = await fetch(endpointDish);
             const result = await response.json();
 
             console.table(result.value);
