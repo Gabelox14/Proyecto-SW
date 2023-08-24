@@ -88,13 +88,14 @@ const CrudTableWithApi = () => {
       };
 
     try {
-      const response = await fetch(`/data-api/rest/dishservicios/${formData.dish_id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
+      const endpoint = '/data-api/rest/dishservicios/dish_id';
+    const response = await fetch(`${endpoint}/${dish_id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+    const result = await response.json();
+    console.table(result.value);
       if (response.ok) {
         fetchData(); // Refresh data after updating
         setFormData({ dish_id: 0,  amount: 0, imgURL: '', title: '', price: 0, kind: '' });
