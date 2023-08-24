@@ -18,24 +18,37 @@ function Login() {
   //}
 
   async function get() {
-    const endpoint = `/data-api/rest/dbservicios/`;
-    const response = await fetch(`${endpoint}`);
-    const result = await response.json();
-    console.table(result.value);
+    try {
+      const endpoint = '/data-api/rest/dbservicios/';
+      const response = await fetch(endpoint);
+      const result = await response.json();
+      console.table(result.value);
 
+<<<<<<< HEAD
     const userID = result.value[0]; //Hacer for reemplazar 
     sessionStorage.setItem("userID", userID);
+=======
+      for (let i = 0; i < result.value.length; i++) {
+        const user = result.value[i];
+        const userID = user.user_id; 
+        const userName = user.name; 
+        const userEmail = user.email; 
+        const userPassword = user.password; 
+>>>>>>> 31547583eca33cb0f0cc075e0dae62219d2079c3
 
-    if (userID.email === email) {
-      console.log("ID del usuario almacenado:", email);
-      // var storedUserID = sessionStorage.getItem("userID");
-      // if (storedUserID) {
-      //   console.log("ID del usuario almacenado:", storedUserID);
-      // } else {
-      //   console.log("No se encontró ningún ID de usuario almacenado.");
-      // }
+        if (user.email === email) {
+          console.log('ID del usuario almacenado:', userID);
+          sessionStorage.setItem('userID', userID);
+          sessionStorage.setItem('userName', userName);
+          sessionStorage.setItem('userEmail', userEmail);
+          sessionStorage.setItem('userPassword', userPassword);
+          navigate("/home");
+        }
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
     }
-  }
+}
 
     //async function update() {
     //

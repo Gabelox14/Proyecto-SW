@@ -5,9 +5,11 @@ import { RiEyeFill, RiEyeOffFill } from 'react-icons/ri';
 
 const Security = () => {
 
-  const [password, setPassword] = useState('');
+  const [newpassword, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  
 
+  
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -15,6 +17,27 @@ const Security = () => {
   const handlePasswordChange = (event: { target: { value: SetStateAction<string>; }; }) => {
     setPassword(event.target.value);
   };
+
+  async function update() {
+    const storedID = sessionStorage.getItem('userID');
+    const storedFirstName = sessionStorage.getItem('userName');
+    const storedEmail = sessionStorage.getItem('userEmail');
+    
+    const data = {
+      name: storedFirstName,
+      email: storedEmail,
+      password: newpassword
+    };
+  
+    const endpoint = '/data-api/rest/dbservicios/user_id';
+    const response = await fetch(`${endpoint}/${storedID}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+    const result = await response.json();
+    console.table(result.value);
+  }
 
   return (
     <>
@@ -54,7 +77,7 @@ const Security = () => {
                   className="border-none focus:outline-none text-sm pl-6 h-12 w-[80%] bg-[#fafafa]/[0.5] border-transparent rounded-lg text-white"
                   type={showPassword ? 'text' : 'password'}
                   placeholder="*******"
-                  value={password}
+                  value={newpassword}
                   onChange={handlePasswordChange}
                 />
                 <button
@@ -73,7 +96,7 @@ const Security = () => {
           </div>
         </div>
 
-        <button type="submit" className="animated-btn px-[6rem] mx-auto py-[0.9rem] bg-brnadColor text-white rounded-[5px] flex" >
+        <button type="submit" className="animated-btn px-[6rem] mx-auto py-[0.9rem] bg-brnadColor text-white rounded-[5px] flex" onClick={update}>
           Update Password
         </button>
       </form>

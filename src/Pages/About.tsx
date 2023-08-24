@@ -25,8 +25,9 @@ const About = () => {
                 </div>
                 <div className="p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center">
                     <a className="text-brandColor" href="https://example.com" >sample@email.com</a>
-                    <p className="leading-normal my-5 text-white">49 Lopez St.
-                        <br />Ikeja Lagos, Nigeria
+                    <p className="leading-normal my-5 text-white">123 Avenida Universidad.
+                        <br />San Pedro, San Jose
+                        <br />Ulacit, Costa Rica
                     </p>
                     <span className="inline-flex">
                         <a className="text-brandColor cursor-pointer" href="www.facebook.com" target="_blank">

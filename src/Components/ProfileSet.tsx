@@ -7,10 +7,8 @@ import { RxPerson } from 'react-icons/rx';
 
 
 const ProfileSet = () => {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [id] = useState('');
+  const [userName, setFirstName] = useState('');
+  const [userEmail, setEmail] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -38,25 +36,22 @@ const ProfileSet = () => {
    //}
 
     const searchParams = new URLSearchParams(location.search);
-    const storedFirstName = localStorage.getItem('firstName');
-    const storedLastName = localStorage.getItem('lastName');
-    const storedEmail = localStorage.getItem('email');
+    const storedFirstName = sessionStorage.getItem('userName');
+    const storedEmail = sessionStorage.getItem('userEmail');
+    
 
-    setFirstName(storedFirstName || searchParams.get('firstName') || '');
-    setLastName(storedLastName || searchParams.get('lastName') || '');
-    setEmail(storedEmail || searchParams.get('email') || '');
+    setFirstName(storedFirstName || searchParams.get('userName') || '');
+    setEmail(storedEmail || searchParams.get('userEmail') || '');
   }, [location]);
 
   const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     const searchParams = new URLSearchParams();
-    searchParams.set('firstName', firstName);
-    searchParams.set('lastName', lastName);
-    searchParams.set('email', email);
+    searchParams.set('userName', userName);
+    searchParams.set('userEmail', userEmail);
 
-    localStorage.setItem('firstName', firstName);
-    localStorage.setItem('lastName', lastName);
-    localStorage.setItem('email', email);
+    sessionStorage.setItem('userName', userName);
+    sessionStorage.setItem('userEmail', userEmail);
 
 
     navigate({
@@ -69,15 +64,15 @@ const ProfileSet = () => {
 
 
   async function update() {
-
+    const storedID = sessionStorage.getItem('userID');
     
     const data = {
-      name: firstName +" "+ lastName,
-      email: email
+      name: userName ,
+      email: userEmail
     };
   
     const endpoint = '/data-api/rest/dbservicios/user_id';
-    const response = await fetch(`${endpoint}/${id}`, {
+    const response = await fetch(`${endpoint}/${storedID}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)
@@ -100,32 +95,19 @@ const ProfileSet = () => {
           <div className="flex md:gap-x-4 md:justify-around gap-y-9 md:gap-y-0 lg:justify-around gap-x-4 flex-col sm:flex-row ml-[4%] w-[80%] sm:full md:w-[90%]">
             <div className="">
               <label htmlFor="firstName" className="font-[500] mb-2 ml-1">
-                First Name
+                 Name
               </label>
               <div className="w-[24rem]">
                 <input
                   className="border-none focus:outline-none text-sm pl-2 lg:pl-4 md:pl-4 h-12 w-[100%] bg-[#efeeee]/[0.5] border-transparent rounded-lg"
                   type="text"
                   placeholder="Enter your First Name"
-                  value={firstName}
+                  value={userName}
                   onChange={(e) => setFirstName(e.target.value)}
                 />
               </div>
             </div>
-            <div>
-              <label htmlFor="lastName" className="font-[500] mb-2 ml-1">
-                Last Name
-              </label>
-              <div className="md:w-[100%] w-[100%] lg:w-[24rem]">
-                <input
-                  className="border-none focus:outline-none text-sm pl-6 h-12 w-[100%] bg-[#efeeee]/[0.5] border-transparent rounded-lg"
-                  type="text"
-                  placeholder="Enter your Last Name"
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
-                />
-              </div>
-            </div>
+            
           </div>
         </div>
         <div className="flex flex-col justify-center md:items-center mb-10 mt-8">
@@ -137,7 +119,7 @@ const ProfileSet = () => {
               className="border-none focus:outline-none text-sm pl-6 h-12 w-[80%] bg-[#efeeee]/[0.5] border-transparent rounded-lg"
               type="email"
               placeholder="sample@email.com"
-              value={email}
+              value={userEmail}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
