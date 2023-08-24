@@ -82,7 +82,7 @@ const CrudTableWithApi = () => {
       };
 
     try {
-      const response = await fetch(`/data-api/rest/dishservicios/${formData.dish_id}`, {
+      const response = await fetch(`/data-api/rest/dishservicios/dish_id/${formData.dish_id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -103,7 +103,7 @@ const CrudTableWithApi = () => {
 
   const handleDelete = async (dish_id: number) => {
     try {
-      const response = await fetch(`/data-api/rest/dishservicios/${dish_id}`, {
+      const response = await fetch(`/data-api/rest/dishservicios/dish_id/${dish_id}`, {
         method: 'DELETE',
       });
       if (response.ok) {
