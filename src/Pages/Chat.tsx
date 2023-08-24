@@ -126,17 +126,17 @@ const CrudTableWithApi = () => {
   return (
     <>
      <SideBar/> 
-    <div className="wrapper">
-    <div className="bg-bgColor bg-white rounded-lg shadow-md p-8 w-full max-w-md">
+    <div className="wrapperDT w-3/5">
+    <div className="bg-bgColor bg-white rounded-lg shadow-md p-2 md:p-9 w-full">
       <h2>CRUD Table with API</h2>
       <table>
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Price</th>
-            <th>Kind</th>
-            <th>Actions</th>
+            <th className="rounded-lg shadow-md p-2 md:p-2 w-8 max-w-md">ID</th>
+            <th className="rounded-lg shadow-md p-2 md:p-29 w-96 ">Title</th>
+            <th className="rounded-lg shadow-md p-2 md:p-29 w-96 ">Price</th>
+            <th className="rounded-lg shadow-md p-2 md:p-29 w-96 ">Kind</th>
+            <th className="rounded-lg shadow-md p-2 md:p-29 w-96">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -150,11 +150,16 @@ const CrudTableWithApi = () => {
                 <button onClick={() => handleEdit(item)} className="animated-btn px-[6rem] mx-auto py-[0.9rem] bg-brnadColor text-white rounded-[5px] flex">Edit</button>
                 <button onClick={() => handleDelete(item.dish_id)} className="animated-btn px-[6rem] mx-auto py-[0.9rem] bg-brnadColor text-white rounded-[5px] flex">Delete</button>
               </td>
+              <br/>
+              <br/>            
             </tr>
+            
           ))}
         </tbody>
       </table>
       <div>
+      <br/>
+              <br/>
         <h3>{editMode ? 'Edit Item' : 'Add Item'}</h3>
         <input
           type="text"
@@ -162,7 +167,7 @@ const CrudTableWithApi = () => {
           placeholder="Title"
           value={formData.title}
           onChange={handleInputChange}
-          className="font-[500] mb-2 ml-1"
+          className="font-[500] mb-2 ml-1 shadow-md"
         />
         <input
           type="number"
@@ -170,7 +175,7 @@ const CrudTableWithApi = () => {
           placeholder="Price"
           value={formData.price}
           onChange={handleInputChange}
-          className="font-[500] mb-2 ml-1"
+          className="font-[500] mb-2 ml-1 shadow-md"
         />
         <input
           type="text"
@@ -178,8 +183,10 @@ const CrudTableWithApi = () => {
           placeholder="Kind"
           value={formData.kind}
           onChange={handleInputChange}
-          className="font-[500] mb-2 ml-1"
+          className="font-[500] mb-2 ml-1 shadow-md"
         />
+        <br/>
+        <br/>
         {editMode ? (
           <button onClick={() => handleUpdate(formData.dish_id)} className="animated-btn px-[6rem] mx-auto py-[0.9rem] bg-brnadColor text-white rounded-[5px] flex">Update</button>
         ) : (

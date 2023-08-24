@@ -8,6 +8,14 @@
   margin-left: 38vw;
 }
 
+.wrapperDT {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin-left: 23vw;
+}
+
 .bgColor {
   background-color: rgb(204, 26, 26); /* Replace with your desired background color */
   width: 200px; /* Set the width of the box */
