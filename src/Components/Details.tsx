@@ -18,7 +18,7 @@ interface DetailsProps {
 function Details({ handleClick }: DetailsProps) {
   const [query, setQuery] = useState("");
   const [dishData, setDishData] = useState<Dish[]>([]);
-  const [activeTab, setActiveTab] = useState('All'); // Add this line
+  const [activeTab, setActiveTab] = useState('All');
   const [category, setCategory] = useState<Dish[]>([]);
 
   useEffect(() => {
@@ -31,10 +31,12 @@ function Details({ handleClick }: DetailsProps) {
       const response = await fetch(endpointDish);
       const result = await response.json();
       setDishData(result.value);
+      setCategory(result.value); // Initialize category with all dishes
     } catch (error) {
       console.log("Error fetching data:", error);
     }
   }
+
   const handleBtns = (word: string) => {
     if (word === 'All') {
       setCategory(dishData);
@@ -97,7 +99,7 @@ function Details({ handleClick }: DetailsProps) {
 
         <section className="flex flex-row flex-wrap">
         {category
-  .filter(title => query === '' || title.title.toLowerCase().includes(query.toLowerCase()))
+  .filter(item => query === '' || item.title.toLowerCase().includes(query.toLowerCase()))
   .map(dish => (
     <Cards key={dish.id} dish={dish} handleClick={handleClick} /> // Use 'dish' prop here
 ))}
