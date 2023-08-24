@@ -26,11 +26,12 @@ function Login() {
 
       for (let i = 0; i < result.value.length; i++) {
         const user = result.value[i];
-        const userID = user.user_id; // Assuming the user ID is stored in the 'id' property
+        const userID = user.user_id; 
 
         if (user.email === email) {
           console.log('ID del usuario almacenado:', userID);
           sessionStorage.setItem('userID', userID);
+          navigate("/home");
         }
       }
     } catch (error) {
