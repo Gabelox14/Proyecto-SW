@@ -43,15 +43,19 @@ const CrudTableWithApi = () => {
   
 
   const handleAdd = async () => {
-    if (formData.title && formData.price && formData.kind) {
+    const data = {
+      title: formData.title,
+        price: formData.price,
+        kind: formData.kind, 
+        amount: 1
+      };
       try {
-        const response = await fetch('/data-api/rest/dishservicios/', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData),
-        });
+        const endpoint = `/data-api/rest/dishservicios/`;
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
         if (response.ok) {
           fetchData(); // Refresh data after adding
           setFormData({ dish_id: 0, amount: 0, imgURL: '', title: '', price: 0, kind: '' });
@@ -61,7 +65,6 @@ const CrudTableWithApi = () => {
       } catch (error) {
         console.log('Error adding item:', error);
       }
-    }
   };
 
   const handleEdit = (item: Dish) => {
