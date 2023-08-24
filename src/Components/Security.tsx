@@ -20,6 +20,9 @@ const Security = () => {
     setPassword(searchParams.get('userPassword') || storedPassword || '');
   }, [location]);
   
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   const handlePasswordChange = (event: { target: { value: SetStateAction<string>; }; }) => {
     setPassword(event.target.value);
@@ -86,7 +89,7 @@ const Security = () => {
                 <button
                   type="button"
                   className="absolute right-2 top-1/2 transform -translate-y-1/2 focus:outline-none"
-                  onClick={update}
+                  onClick={togglePasswordVisibility}
                 >
                   {showPassword ? (
                     <RiEyeOffFill className="text-gray-500" />
@@ -99,7 +102,7 @@ const Security = () => {
           </div>
         </div>
 
-        <button type="submit" className="animated-btn px-[6rem] mx-auto py-[0.9rem] bg-brnadColor text-white rounded-[5px] flex" >
+        <button type="submit" className="animated-btn px-[6rem] mx-auto py-[0.9rem] bg-brnadColor text-white rounded-[5px] flex" onClick={update}>
           Update Password
         </button>
       </form>
