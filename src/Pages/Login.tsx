@@ -78,7 +78,8 @@ function Login() {
       });
       const result = await response.json();
       console.table(result.value);
-      navigate("/home");
+      get();
+      //navigate("/home");
     }
 
     //async function del() {
