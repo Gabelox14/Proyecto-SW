@@ -10,7 +10,6 @@ const ProfileSet = () => {
   const [userName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [userEmail, setEmail] = useState('');
-  const [userID] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -41,6 +40,7 @@ const ProfileSet = () => {
     const storedFirstName = sessionStorage.getItem('userName');
     const storedLastName = sessionStorage.getItem('lastName');
     const storedEmail = sessionStorage.getItem('userEmail');
+    
 
     setFirstName(storedFirstName || searchParams.get('userName') || '');
     setLastName(storedLastName || searchParams.get('lastName') || '');
@@ -69,7 +69,7 @@ const ProfileSet = () => {
 
 
   async function update() {
-
+    const storedID = sessionStorage.getItem('userID');
     
     const data = {
       name: userName +" "+ lastName,
@@ -77,7 +77,7 @@ const ProfileSet = () => {
     };
   
     const endpoint = '/data-api/rest/dbservicios/user_id';
-    const response = await fetch(`${endpoint}/${userID}`, {
+    const response = await fetch(`${endpoint}/${storedID}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)

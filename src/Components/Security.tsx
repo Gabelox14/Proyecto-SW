@@ -7,7 +7,7 @@ const Security = () => {
 
   const [newpassword, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [userID] = useState('');
+  
 
   
   const togglePasswordVisibility = () => {
@@ -19,14 +19,14 @@ const Security = () => {
   };
 
   async function update() {
-
+    const storedID = sessionStorage.getItem('userID');
     
     const data = {
       password: newpassword
     };
   
     const endpoint = '/data-api/rest/dbservicios/user_id';
-    const response = await fetch(`${endpoint}/${userID}`, {
+    const response = await fetch(`${endpoint}/${storedID}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)
