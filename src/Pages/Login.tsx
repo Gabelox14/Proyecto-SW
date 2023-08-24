@@ -31,7 +31,7 @@ function Login() {
         const userEmail = user.email; 
         const userPassword = user.password; 
 
-        if (user.email === email) {
+        if (user.email === email && user.password === password) {
           console.log('ID del usuario almacenado:', userID);
           sessionStorage.setItem('userID', userID);
           sessionStorage.setItem('userName', userName);
