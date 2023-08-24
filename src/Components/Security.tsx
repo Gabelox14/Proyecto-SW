@@ -6,19 +6,12 @@ import {  useLocation } from 'react-router-dom';
 
 const Security = () => {
 
-  const [password, setPassword] = useState("");
+  const [newpassword, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [userID] = useState('');
 
   const location = useLocation();
 
-  useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
-    const storedPassword = sessionStorage.getItem('userPassword');
-    
-
-    setPassword(searchParams.get('userPassword') || storedPassword || '');
-  }, [location]);
   
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -32,7 +25,7 @@ const Security = () => {
 
     
     const data = {
-      password: password
+      password: newpassword
     };
   
     const endpoint = '/data-api/rest/dbservicios/user_id';
@@ -83,7 +76,7 @@ const Security = () => {
                   className="border-none focus:outline-none text-sm pl-6 h-12 w-[80%] bg-[#fafafa]/[0.5] border-transparent rounded-lg text-white"
                   type={showPassword ? 'text' : 'password'}
                   placeholder="*******"
-                  value={password}
+                  value={newpassword}
                   onChange={handlePasswordChange}
                 />
                 <button
