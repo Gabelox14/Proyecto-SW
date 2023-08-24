@@ -24,17 +24,12 @@ function Login() {
       const result = await response.json();
       console.table(result.value);
 
-<<<<<<< HEAD
-    const userID = result.value[0]; //Hacer for reemplazar 
-    sessionStorage.setItem("userID", userID);
-=======
       for (let i = 0; i < result.value.length; i++) {
         const user = result.value[i];
         const userID = user.user_id; 
         const userName = user.name; 
         const userEmail = user.email; 
         const userPassword = user.password; 
->>>>>>> 31547583eca33cb0f0cc075e0dae62219d2079c3
 
         if (user.email === email) {
           console.log('ID del usuario almacenado:', userID);
