@@ -68,10 +68,17 @@ const CrudTableWithApi = () => {
     setEditMode(true);
     setFormData(item);
   };
+
+  async function list() {
+    const endpoint = '/data-api/rest/dishservicios';
+    const response = await fetch(endpoint);
+    const data = await response.json();
+    console.table(data.value);
+  }
   
 
   const handleUpdate = async (dish_id: number) => {
-
+    list();
     const data = {
         dish_id: formData.dish_id,
         imgURL: formData.imgURL,
