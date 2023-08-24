@@ -7,6 +7,7 @@ interface Dish {
     imgURL: string;
     title: string; // Correct the typo here: 'title' instead of 'tittle'
     price: number;
+    kind: string;
     // Add other properties as needed
 }
 
