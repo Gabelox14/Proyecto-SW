@@ -49,7 +49,7 @@ const Cards = ({ handleClick, dish }: { handleClick: (dish: Dish) => void, dish:
                                     <p className="leading-relaxed mt-4 text-lg">
                                         Price: ₡{dish.price}
                                     </p>
-                                    <button className="animated-btn">Add to Cart</button>
+                                    <button onClick={() => handleClick(dish)} className="animated-btn">Add to Cart</button>
                                 </div>
                             </div>
                         </div>
