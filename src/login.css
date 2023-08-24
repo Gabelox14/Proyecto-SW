@@ -26,6 +26,8 @@
 /* Add these styles to your existing CSS file */
 .table-container {
   overflow-x: auto; /* Enable horizontal scrolling if needed */
+  overflow-y: auto;
+  max-height: 55vh;
 }
 
 .responsive-table {
