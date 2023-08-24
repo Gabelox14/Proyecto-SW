@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import "../styles/chat.css";
+import SideBar from "../Components/SideBar";
 
 interface Dish {
   id: number;
@@ -100,6 +102,8 @@ const CrudTableWithApi = () => {
   };
 
   return (
+    <>
+    <SideBar/>
     <div>
       <h2>CRUD Table with API</h2>
       <table>
@@ -120,8 +124,8 @@ const CrudTableWithApi = () => {
               <td>{item.price}</td>
               <td>{item.kind}</td>
               <td>
-                <button onClick={() => handleEdit(item)}>Edit</button>
-                <button onClick={() => handleDelete(item.id)}>Delete</button>
+                <button onClick={() => handleEdit(item)} className="animated-btn px-[6rem] mx-auto py-[0.9rem] bg-brnadColor text-white rounded-[5px] flex">Edit</button>
+                <button onClick={() => handleDelete(item.id)} className="animated-btn px-[6rem] mx-auto py-[0.9rem] bg-brnadColor text-white rounded-[5px] flex">Delete</button>
               </td>
             </tr>
           ))}
@@ -135,6 +139,7 @@ const CrudTableWithApi = () => {
           placeholder="Title"
           value={formData.title}
           onChange={handleInputChange}
+          className="font-[500] mb-2 ml-1"
         />
         <input
           type="number"
@@ -142,6 +147,7 @@ const CrudTableWithApi = () => {
           placeholder="Price"
           value={formData.price}
           onChange={handleInputChange}
+          className="font-[500] mb-2 ml-1"
         />
         <input
           type="text"
@@ -149,14 +155,16 @@ const CrudTableWithApi = () => {
           placeholder="Kind"
           value={formData.kind}
           onChange={handleInputChange}
+          className="font-[500] mb-2 ml-1"
         />
         {editMode ? (
-          <button onClick={handleUpdate}>Update</button>
+          <button onClick={handleUpdate} className="animated-btn px-[6rem] mx-auto py-[0.9rem] bg-brnadColor text-white rounded-[5px] flex">Update</button>
         ) : (
-          <button onClick={handleAdd}>Add</button>
+          <button onClick={handleAdd} className="animated-btn px-[6rem] mx-auto py-[0.9rem] bg-brnadColor text-white rounded-[5px] flex">Add</button>
         )}
       </div>
     </div>
+    </>
   );
 };
 
