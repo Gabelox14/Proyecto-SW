@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Cards from './Cards';
 import { FaSearch } from "react-icons/fa";
 
@@ -17,25 +17,25 @@ interface DetailsProps {
 
 function Details({ handleClick }: DetailsProps) {
   const [query, setQuery] = useState("");
-  const [dishData, setDishData] = useState<Dish[]>([]);
+  const [dishData] = useState<Dish[]>([]);
   // const [activeTab, setActiveTab] = useState('All');
   // const [category, setCategory] = useState<Dish[]>([]);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  async function fetchData() {
-    try {
-      const endpointDish = '/data-api/rest/dishservicios/';
-      const response = await fetch(endpointDish);
-      const result = await response.json();
-      setDishData(result.value);
-      // setCategory(result.value); // Initialize category with all dishes
-    } catch (error) {
-      console.log("Error fetching data:", error);
-    }
-  }
+  //useEffect(() => {
+  //  fetchData();
+  //}, []);
+//
+  //async function fetchData() {
+  //  try {
+  //    const endpointDish = '/data-api/rest/dishservicios/';
+  //    const response = await fetch(endpointDish);
+  //    const result = await response.json();
+  //    setDishData(result.value);
+  //    // setCategory(result.value); // Initialize category with all dishes
+  //  } catch (error) {
+  //    console.log("Error fetching data:", error);
+  //  }
+  //}
 
   // const handleBtns = (word: string) => {
   //   if (word === 'All') {
