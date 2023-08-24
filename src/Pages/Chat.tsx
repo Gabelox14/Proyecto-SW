@@ -6,7 +6,7 @@ interface Dish {
   dish_id: number;
   imgURL: string;
   title: string;
-  price: number;
+  price: string;
   kind: string; 
   amount: number
   // ... Agrega otras propiedades si es necesario
@@ -14,7 +14,7 @@ interface Dish {
 
 const CrudTableWithApi = () => {
   const [dishData, setDishData] = useState<Dish[]>([]);
-  const [formData, setFormData] = useState<Dish>({ dish_id: 0, amount: 0 ,imgURL: '', title: '', price: 0, kind: '' });
+  const [formData, setFormData] = useState<Dish>({ dish_id: 0, amount: 0 ,imgURL: '', title: '', price: "0", kind: '' });
   const [editMode, setEditMode] = useState(false);
 
   useEffect(() => {
@@ -50,7 +50,7 @@ const CrudTableWithApi = () => {
         });
         if (response.ok) {
           fetchData(); // Refresh data after adding
-          setFormData({ dish_id: 0, amount: 0, imgURL: '', title: '', price: 0, kind: '' });
+          setFormData({ dish_id: 0, amount: 0, imgURL: '', title: '', price: '', kind: '' });
         } else {
           console.log('Failed to add item');
         }
@@ -77,7 +77,7 @@ const CrudTableWithApi = () => {
       });
       if (response.ok) {
         fetchData(); // Refresh data after updating
-        setFormData({ dish_id: 0,  amount: 0, imgURL: '', title: '', price: 0, kind: '' });
+        setFormData({ dish_id: 0,  amount: 0, imgURL: '', title: '', price: '', kind: '' });
         setEditMode(false);
       } else {
         console.log('Failed to update item');
