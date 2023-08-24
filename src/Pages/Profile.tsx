@@ -41,7 +41,7 @@ import "../styles/profile.css";
 const Profile = () => {
   const [userName, setFirstName] = useState('');
   const [userEmail, setEmail] = useState('');
-  const [userID] = useState('');
+  
 
   const location = useLocation();
 
@@ -62,7 +62,6 @@ const Profile = () => {
     
     const storedID = sessionStorage.getItem('userID');
     const storedPassword = sessionStorage.getItem('userPassword');
-
     const data = {
       name: userName ,
       email: userEmail,
