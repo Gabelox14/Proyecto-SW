@@ -80,16 +80,15 @@ const CrudTableWithApi = () => {
   const handleUpdate = async (dish_id: number) => {
     list();
     const data = {
-        dish_id: formData.dish_id,
-        imgURL: formData.imgURL,
-        title: formData.title,
+      title: formData.title,
         price: formData.price,
         kind: formData.kind, 
-        amount: formData.amount
+        amount: formData.amount,  
+      imgURL: formData.imgURL
       };
 
     try {
-      const response = await fetch(`/data-api/rest/dishservicios/${dish_id}`, {
+      const response = await fetch(`/data-api/rest/dishservicios/${formData.dish_id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
