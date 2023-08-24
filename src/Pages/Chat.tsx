@@ -132,11 +132,11 @@ const CrudTableWithApi = () => {
       <table>
         <thead>
           <tr>
-            <th className="rounded-lg shadow-md p-2 md:p-2 w-8 max-w-md">ID</th>
-            <th className="rounded-lg shadow-md p-2 md:p-29 w-96 ">Title</th>
-            <th className="rounded-lg shadow-md p-2 md:p-29 w-96 ">Price</th>
-            <th className="rounded-lg shadow-md p-2 md:p-29 w-96 ">Kind</th>
-            <th className="rounded-lg shadow-md p-2 md:p-29 w-96">Actions</th>
+            <th className="rounded-lg shadow-md w-fit">ID</th>
+            <th className="rounded-lg shadow-md w-fit ">Title</th>
+            <th className="rounded-lg shadow-md w-fit ">Price</th>
+            <th className="rounded-lg shadow-md w-fit ">Kind</th>
+            <th className="rounded-lg shadow-md w-fit">Actions</th>
           </tr>
         </thead>
         <tbody>
