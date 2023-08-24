@@ -1,7 +1,7 @@
 //import React, { useState, useEffect } from 'react';
 import React, { useState } from "react";
 import Cards from './Cards';
-import { list } from '../data';
+// import { list } from '../data';
 import { FaSearch } from "react-icons/fa";
 
 //interface CartItem {
