@@ -31,7 +31,7 @@ function Details({ handleClick }: DetailsProps) {
       const response = await fetch(endpointDish);
       const result = await response.json();
       setDishData(result.value);
-      setCategory(result.value); // Initialize category with all dishes
+      // setCategory(result.value); // Initialize category with all dishes
     } catch (error) {
       console.log("Error fetching data:", error);
     }
@@ -99,7 +99,7 @@ function Details({ handleClick }: DetailsProps) {
 
         <section className="flex flex-row flex-wrap">
         {category
-  .filter(item => query === '' || item.title.toLowerCase().includes(query.toLowerCase()))
+  .filter(title => query === '' || title.title.toLowerCase().includes(query.toLowerCase()))
   .map(dish => (
     <Cards key={dish.id} dish={dish} handleClick={handleClick} /> // Use 'dish' prop here
 ))}
