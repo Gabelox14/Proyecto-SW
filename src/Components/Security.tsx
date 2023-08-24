@@ -20,9 +20,6 @@ const Security = () => {
     setPassword(searchParams.get('userPassword') || storedPassword || '');
   }, [location]);
   
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
 
   const handlePasswordChange = (event: { target: { value: SetStateAction<string>; }; }) => {
     setPassword(event.target.value);
