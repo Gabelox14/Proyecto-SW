@@ -1,4 +1,5 @@
 import "../styles/button.css";
+import React, { useState } from "react";
 
 
 interface Item {
@@ -7,8 +8,30 @@ interface Item {
     img: string;
 }
 
+
+
+
 const Cards = ({ item, handleClick }: { item: Item, handleClick: (item: Item) => void }) => {
     const { title, price, img } = item;
+    
+    
+    async function get() {
+        try{
+            const endpoint = '/data-api/rest/dbservicios/Dish';
+            const response = await fetch(endpoint);
+            const result = await response.json();
+
+            console.table(result.value);
+
+        } catch{
+        
+        }
+    }
+
+    
+    
+
+   
 
     return (
         <>
@@ -21,6 +44,7 @@ const Cards = ({ item, handleClick }: { item: Item, handleClick: (item: Item) =>
                             <div className="flex flex-wrap justify-between mb-2">
                                 <p className="leading-relaxed mt-4 text-lg">Price:  ₡{price}</p>
                                 <button onClick={() => handleClick(item)} className="animated-btn">Add to Cart</button>
+                                <button onClick={(get)}>Add to Cart</button>
                             </div>
                         </div>
                     </div>

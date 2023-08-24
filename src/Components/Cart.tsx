@@ -104,7 +104,7 @@ const Cart = ({ cart, setCart, handleChange }: CartProps) => {
                   </button>
                 </div>
                 <div>
-                  <span className="text-brandColor py-1.5 px-2.5 rounded-lg mr-2.5"> ₡ {item.price}</span>
+                  <span className="text-brandColor py-1.5 px-2.5 rounded-lg mr-2.5"> ₡{item.price}</span>
                   <button
                     className="py-2 px-2.5 font-semibold bg-red-100 rounded-lg cursor-pointer text-brandColor hover:text-red-600"
                     onClick={() => handleRemove(item.id)}
