@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "../styles/chat.css";
-import SideBar from "../Components/SideBar";
+//import SideBar from "../Components/SideBar";
 
 interface Dish {
   id: number;
@@ -103,7 +103,7 @@ const CrudTableWithApi = () => {
 
   return (
     <>
-    <SideBar/>
+    {/* <SideBar/> */}
     <div>
       <h2>CRUD Table with API</h2>
       <table>
