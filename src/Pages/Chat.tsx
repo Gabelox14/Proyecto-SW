@@ -6,7 +6,7 @@ interface Dish {
   dish_id: number;
   imgURL: string;
   title: string;
-  price: string;
+  price: number;
   kind: string; 
   amount: number
   // ... Agrega otras propiedades si es necesario
@@ -14,7 +14,7 @@ interface Dish {
 
 const CrudTableWithApi = () => {
   const [dishData, setDishData] = useState<Dish[]>([]);
-  const [formData, setFormData] = useState<Dish>({ dish_id: 0, amount: 0 ,imgURL: '', title: '', price: "0", kind: '' });
+  const [formData, setFormData] = useState<Dish>({ dish_id: 0, amount: 0 ,imgURL: '', title: '', price: 0, kind: '' });
   const [editMode, setEditMode] = useState(false);
 
   useEffect(() => {
@@ -50,7 +50,7 @@ const CrudTableWithApi = () => {
         });
         if (response.ok) {
           fetchData(); // Refresh data after adding
-          setFormData({ dish_id: 0, amount: 0, imgURL: '', title: '', price: '', kind: '' });
+          setFormData({ dish_id: 0, amount: 0, imgURL: '', title: '', price: 0, kind: '' });
         } else {
           console.log('Failed to add item');
         }
@@ -67,6 +67,16 @@ const CrudTableWithApi = () => {
   
 
   const handleUpdate = async () => {
+
+   // const data = {
+   //     dish_id: formData.dish_id,
+   //     imgURL: formData.imgURL,
+   //     title: formData.title,
+   //     price: formData.price,
+   //     kind: formData.kind, 
+   //     amount: formData.amount
+   //   };
+
     try {
       const response = await fetch(`/data-api/rest/dishservicios/${formData.dish_id}`, {
         method: 'PUT',
@@ -77,7 +87,7 @@ const CrudTableWithApi = () => {
       });
       if (response.ok) {
         fetchData(); // Refresh data after updating
-        setFormData({ dish_id: 0,  amount: 0, imgURL: '', title: '', price: '', kind: '' });
+        setFormData({ dish_id: 0,  amount: 0, imgURL: '', title: '', price: 0, kind: '' });
         setEditMode(false);
       } else {
         console.log('Failed to update item');
