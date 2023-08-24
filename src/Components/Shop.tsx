@@ -12,7 +12,7 @@ const Shop = () => {
   const [cart, setCart] = useState<any[]>([]);
 
   const handleClick = (item: any) => {
-    if (cart.some((cartItem) => cartItem.id === item.id)) return;
+    if (cart.some((cartItem) => cartItem.id === item.dish_id)) return;
     setCart([...cart, item]);
     toast.success('Item has been added to cart', {
       position: "top-center",
