@@ -41,7 +41,7 @@ import "../styles/profile.css";
 const Profile = () => {
   const [userName, setFirstName] = useState('');
   const [userEmail, setEmail] = useState('');
-  const [userID] = useState('');
+  
 
   const location = useLocation();
 
@@ -60,9 +60,8 @@ const Profile = () => {
   async function update() {
 
     
-    
+    const storedID = sessionStorage.getItem('userID');
     const storedPassword = sessionStorage.getItem('userPassword');
-    
     const data = {
       name: userName ,
       email: userEmail,
@@ -70,7 +69,7 @@ const Profile = () => {
     };
   
     const endpoint = '/data-api/rest/dbservicios/user_id';
-    const response = await fetch(`${endpoint}/${userID}`, {
+    const response = await fetch(`${endpoint}/${storedID}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)
