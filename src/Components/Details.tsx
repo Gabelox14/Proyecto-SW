@@ -22,7 +22,9 @@ function Details({ handleClick }: DetailsProps) {
   // const [activeTab, setActiveTab] = useState('All');
   // const [category, setCategory] = useState<Dish[]>([]);
 
-  
+  useEffect(() => {
+   fetchData();
+  }, []);
 
   async function fetchData() {
    try {
@@ -35,10 +37,7 @@ function Details({ handleClick }: DetailsProps) {
      console.log("Error fetching data:", error);
    }
   }
-  
-  useEffect(() => {
-    fetchData();
-   }, []);
+
   // const handleBtns = (word: string) => {
   //   if (word === 'All') {
   //     setCategory(dishData);

@@ -8,11 +8,13 @@ import "../styles/checkoutBtn.css";
 
 
 interface CartItem {
-  id: string;
-  img: string;
+  id: number;
+  imgURL: string;
   title: string;
-  amount: number;
   price: number;
+  kind: string;
+  amount: number; 
+  // ... Agrega otras propiedades si es necesario
 }
 
 interface CartProps {
@@ -30,7 +32,7 @@ const Cart = ({ cart, setCart, handleChange }: CartProps) => {
    });
 
  
-  const handleRemove = (id: string) => {
+  const handleRemove = (id: number) => {
     const arr = cart.filter((item) => item.id !== id);
     setCart(arr);
     handlePrice();
@@ -91,7 +93,7 @@ const Cart = ({ cart, setCart, handleChange }: CartProps) => {
             cart.map((item) => (
               <div className="flex items-center justify-between mt-10 pb-2 border-b-2" key={item.id}>
                 <div className="flex w-80">
-                  <img src={item.img} alt="" className="w-20 h-16" />
+                  <img src={item.imgURL} alt="" className="w-20 h-16" />
                   <p className="font-bold ml-5 mt-4">{item.title}</p>
                 </div>
                 <div className="flex items-center justify-between pb-2 mt-2">
