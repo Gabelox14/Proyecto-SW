@@ -104,7 +104,7 @@ const Cart = ({ cart, setCart, handleChange }: CartProps) => {
                   </button>
                 </div>
                 <div>
-                  <span className="text-brandColor py-1.5 px-2.5 rounded-lg mr-2.5"> &#x20A6; {item.price}</span>
+                  <span className="text-brandColor py-1.5 px-2.5 rounded-lg mr-2.5"> ₡ {item.price}</span>
                   <button
                     className="py-2 px-2.5 font-semibold bg-red-100 rounded-lg cursor-pointer text-brandColor hover:text-red-600"
                     onClick={() => handleRemove(item.id)}
@@ -119,15 +119,15 @@ const Cart = ({ cart, setCart, handleChange }: CartProps) => {
             <>
               <div className="flex justify-between mt-8">
                 <span className="text-lg font-semibold">Meal Price :</span>
-                <span className="text-lg font-semibold text-brandColor">  &#x20A6;{price}</span>
+                <span className="text-lg font-semibold text-brandColor">  ₡{price}</span>
               </div>
               <div className="flex justify-between mt-4 border-b-2">
                 <span className="text-lg font-semibold">Delivery Fee :</span>
-                <span className="text-lg font-semibold text-brandColor">  &#x20A6;1000</span>
+                <span className="text-lg font-semibold text-brandColor">  ₡1000</span>
               </div>
               <div className="flex justify-between mt-4 border-b-2">
                 <span className="text-xl font-bold">Total Cost :</span>
-                <span className="text-xl font-bold text-brandColor">  &#x20A6;{price + 1000}</span>
+                <span className="text-xl font-bold text-brandColor">  ₡{price + 1000}</span>
               </div>
               <section className="flex justify-between mt-12">
                 <button onClick={() => initializePayment(onSuccess as any, onClose)} className="checkout-btn">Checkout</button>
