@@ -4,7 +4,7 @@ import { FaSearch } from "react-icons/fa";
 
 
 interface Dish {
-  id: number;
+  dish_id: number;
   imgURL: string;
   title: string;
   price: number;
@@ -102,7 +102,7 @@ function Details({ handleClick }: DetailsProps) {
         {dishData
   .filter(title => query === '' || title.title.toLowerCase().includes(query.toLowerCase()))
   .map(dish => (
-    <Cards key={dish.id} dish={dish} handleClick={handleClick} /> // Use 'dish' prop here
+    <Cards key={dish.dish_id} dish={dish} handleClick={handleClick} /> // Use 'dish' prop here
 ))}
         </section>
       </section>

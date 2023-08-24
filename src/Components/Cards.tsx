@@ -3,7 +3,7 @@ import "../styles/button.css";
 
 // Define an interface for the dish data
 interface Dish {
-    id: number;
+    dish_id: number;
     imgURL: string;
     title: string; // Correct the typo here: 'title' instead of 'tittle'
     price: number;
@@ -33,7 +33,7 @@ const Cards = ({ handleClick, dish }: { handleClick: (dish: Dish) => void, dish:
         <>
             
                 <section
-                    key={dish.id}
+                    key={dish.dish_id}
                     className="flex flex-row px-6 py-4 lg:w-1/3 text-white w-full bg-bgColor"
                 >
                     <div className="p-1 md:w-1/3 w-1/2 lg:w-full mb-4">
