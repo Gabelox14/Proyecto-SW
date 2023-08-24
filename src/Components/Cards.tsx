@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+//import React, { useState } from "react";
 import "../styles/button.css";
 
 // Define an interface for the dish data
@@ -12,7 +12,7 @@ interface Dish {
 }
 
 const Cards = ({ handleClick, dish }: { handleClick: (dish: Dish) => void, dish: Dish }) => {
-    const [dishData] = useState<Dish[]>([]); // Initialize with Dish[] type
+    //const [dishData] = useState<Dish[]>([]); // Initialize with Dish[] type
 
     //useEffect(() => {
     //    fetchData();
@@ -31,7 +31,7 @@ const Cards = ({ handleClick, dish }: { handleClick: (dish: Dish) => void, dish:
 
     return (
         <>
-            {dishData.map((dish) => (
+            
                 <section
                     key={dish.id}
                     className="flex flex-row px-6 py-4 lg:w-1/3 text-white w-full bg-bgColor"
@@ -55,7 +55,7 @@ const Cards = ({ handleClick, dish }: { handleClick: (dish: Dish) => void, dish:
                         </div>
                     </div>
                 </section>
-            ))}
+            
         </>
     );
 };
