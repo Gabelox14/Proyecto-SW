@@ -3,7 +3,7 @@ import "../styles/chat.css";
 //import SideBar from "../Components/SideBar";
 
 interface Dish {
-  id: number;
+  dish_id: number;
   imgURL: string;
   title: string;
   price: number;
@@ -13,7 +13,7 @@ interface Dish {
 
 const CrudTableWithApi = () => {
   const [dishData, setDishData] = useState<Dish[]>([]);
-  const [formData, setFormData] = useState<Dish>({ id: 0, imgURL: '', title: '', price: 0, kind: '' });
+  const [formData, setFormData] = useState<Dish>({ dish_id: 0, imgURL: '', title: '', price: 0, kind: '' });
   const [editMode, setEditMode] = useState(false);
 
   useEffect(() => {
@@ -49,7 +49,7 @@ const CrudTableWithApi = () => {
         });
         if (response.ok) {
           fetchData(); // Refresh data after adding
-          setFormData({ id: 0, imgURL: '', title: '', price: 0, kind: '' });
+          setFormData({ dish_id: 0, imgURL: '', title: '', price: 0, kind: '' });
         } else {
           console.log('Failed to add item');
         }
@@ -67,7 +67,7 @@ const CrudTableWithApi = () => {
 
   const handleUpdate = async () => {
     try {
-      const response = await fetch(`/data-api/rest/dishservicios/${formData.id}`, {
+      const response = await fetch(`/data-api/rest/dishservicios/${formData.dish_id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ const CrudTableWithApi = () => {
       });
       if (response.ok) {
         fetchData(); // Refresh data after updating
-        setFormData({ id: 0, imgURL: '', title: '', price: 0, kind: '' });
+        setFormData({ dish_id: 0, imgURL: '', title: '', price: 0, kind: '' });
         setEditMode(false);
       } else {
         console.log('Failed to update item');
@@ -118,14 +118,14 @@ const CrudTableWithApi = () => {
         </thead>
         <tbody>
           {dishData.map((item) => (
-            <tr key={item.id}>
-              <td>{item.id}</td>
+            <tr key={item.dish_id}>
+              <td>{item.dish_id}</td>
               <td>{item.title}</td>
               <td>{item.price}</td>
               <td>{item.kind}</td>
               <td>
                 <button onClick={() => handleEdit(item)} className="animated-btn px-[6rem] mx-auto py-[0.9rem] bg-brnadColor text-white rounded-[5px] flex">Edit</button>
-                <button onClick={() => handleDelete(item.id)} className="animated-btn px-[6rem] mx-auto py-[0.9rem] bg-brnadColor text-white rounded-[5px] flex">Delete</button>
+                <button onClick={() => handleDelete(item.dish_id)} className="animated-btn px-[6rem] mx-auto py-[0.9rem] bg-brnadColor text-white rounded-[5px] flex">Delete</button>
               </td>
             </tr>
           ))}
