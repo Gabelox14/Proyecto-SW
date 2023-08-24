@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "../styles/chat.css";
-//import SideBar from "../Components/SideBar";
+import SideBar from "../Components/SideBar";
 
 interface Dish {
   dish_id: number;
@@ -125,8 +125,9 @@ const CrudTableWithApi = () => {
 
   return (
     <>
-    {/* <SideBar/> */}
-    <div>
+     <SideBar/> 
+    <div className="wrapper">
+    <div className="bg-bgColor bg-white rounded-lg shadow-md p-8 w-full max-w-md">
       <h2>CRUD Table with API</h2>
       <table>
         <thead>
@@ -185,6 +186,7 @@ const CrudTableWithApi = () => {
           <button onClick={handleAdd} className="animated-btn px-[6rem] mx-auto py-[0.9rem] bg-brnadColor text-white rounded-[5px] flex">Add</button>
         )}
       </div>
+    </div>
     </div>
     </>
   );
