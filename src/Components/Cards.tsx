@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../styles/button.css";
 
 // Define an interface for the dish data
@@ -12,22 +12,22 @@ interface Dish {
 }
 
 const Cards = ({ handleClick, dish }: { handleClick: (dish: Dish) => void, dish: Dish }) => {
-    const [dishData, setDishData] = useState<Dish[]>([]); // Initialize with Dish[] type
+    const [dishData] = useState<Dish[]>([]); // Initialize with Dish[] type
 
-    useEffect(() => {
-        fetchData();
-    }, []);
-
-    async function fetchData() {
-        try {
-            const endpointDish = '/data-api/rest/dishservicios/';
-            const response = await fetch(endpointDish);
-            const result = await response.json();
-            setDishData(result.value);
-        } catch (error) {
-            console.log("Error fetching data:", error);
-        }
-    }
+    //useEffect(() => {
+    //    fetchData();
+    //}, []);
+//
+    //async function fetchData() {
+    //    try {
+    //        const endpointDish = '/data-api/rest/dishservicios/';
+    //        const response = await fetch(endpointDish);
+    //        const result = await response.json();
+    //        setDishData(result.value);
+    //    } catch (error) {
+    //        console.log("Error fetching data:", error);
+    //    }
+    //}
 
     return (
         <>
