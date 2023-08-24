@@ -18,8 +18,8 @@ interface DetailsProps {
 function Details({ handleClick }: DetailsProps) {
   const [query, setQuery] = useState("");
   const [dishData, setDishData] = useState<Dish[]>([]);
-  const [activeTab, setActiveTab] = useState('All');
-  const [category, setCategory] = useState<Dish[]>([]);
+  // const [activeTab, setActiveTab] = useState('All');
+  // const [category, setCategory] = useState<Dish[]>([]);
 
   useEffect(() => {
     fetchData();
@@ -37,16 +37,16 @@ function Details({ handleClick }: DetailsProps) {
     }
   }
 
-  const handleBtns = (word: string) => {
-    if (word === 'All') {
-      setCategory(dishData);
-    } else {
-      const filtered = dishData.filter(item => item.kind === word);
-      setCategory(filtered);
-    }
+  // const handleBtns = (word: string) => {
+  //   if (word === 'All') {
+  //     setCategory(dishData);
+  //   } else {
+  //     const filtered = dishData.filter(item => item.kind === word);
+  //     setCategory(filtered);
+  //   }
 
-    setActiveTab(word);
-  };
+  //   setActiveTab(word);
+  // };
 
   return (
     <>
@@ -65,8 +65,8 @@ function Details({ handleClick }: DetailsProps) {
             </i>
           </div>
 
-          <div className="flex flex-wrap mt-4 lg:mb-4 mb-8">
-            <button
+          {/* <div className="flex flex-wrap mt-4 lg:mb-4 mb-8"> */}
+            {/* <button
               value="All"
               onClick={() => handleBtns('All')}
               className={`mr-2 text-brandColor border-brandColor border-2 py-1 px-6 md:w-24 h-10 rounded-lg text-lg ${activeTab === 'All' ? 'bg-brandColor outline-none text-white' : ''}`}
@@ -94,11 +94,11 @@ function Details({ handleClick }: DetailsProps) {
             >
               Chinese
             </button>
-          </div>
+          </div> */}
         </section>
 
         <section className="flex flex-row flex-wrap">
-        {category
+        {dishData
   .filter(title => query === '' || title.title.toLowerCase().includes(query.toLowerCase()))
   .map(dish => (
     <Cards key={dish.id} dish={dish} handleClick={handleClick} /> // Use 'dish' prop here
