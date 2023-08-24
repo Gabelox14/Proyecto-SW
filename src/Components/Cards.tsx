@@ -5,12 +5,12 @@ import "../styles/button.css";
 interface Dish {
     id: number;
     imgURL: string;
-    tittle: string; // Correct the typo here: 'title' instead of 'tittle'
+    title: string; // Correct the typo here: 'title' instead of 'tittle'
     price: number;
     // Add other properties as needed
 }
 
-const Cards = () => {
+const Cards = ({ handleClick, dish }: { handleClick: (dish: Dish) => void, dish: Dish }) => {
     const [dishData, setDishData] = useState<Dish[]>([]); // Initialize with Dish[] type
 
     useEffect(() => {
@@ -43,7 +43,7 @@ const Cards = () => {
                                 alt="item"
                             />
                             <div className="px-3 py-2">
-                                <h1 className="text-xl font-bold mb-3">{dish.tittle}</h1>
+                                <h1 className="text-xl font-bold mb-3">{dish.title}</h1>
                                 <div className="flex flex-wrap justify-between mb-2">
                                     <p className="leading-relaxed mt-4 text-lg">
                                         Price: ₡{dish.price}
