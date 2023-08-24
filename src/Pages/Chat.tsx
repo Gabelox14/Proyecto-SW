@@ -70,7 +70,7 @@ const CrudTableWithApi = () => {
   };
   
 
-  const handleUpdate = async () => {
+  const handleUpdate = async (dish_id: number) => {
 
     const data = {
         dish_id: formData.dish_id,
@@ -82,7 +82,7 @@ const CrudTableWithApi = () => {
       };
 
     try {
-      const response = await fetch(`/data-api/rest/dishservicios/dish_id/${formData.dish_id}`, {
+      const response = await fetch(`/data-api/rest/dishservicios/dish_id/${dish_id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -173,7 +173,7 @@ const CrudTableWithApi = () => {
           className="font-[500] mb-2 ml-1"
         />
         {editMode ? (
-          <button onClick={handleUpdate} className="animated-btn px-[6rem] mx-auto py-[0.9rem] bg-brnadColor text-white rounded-[5px] flex">Update</button>
+          <button onClick={() => handleUpdate(formData.dish_id)} className="animated-btn px-[6rem] mx-auto py-[0.9rem] bg-brnadColor text-white rounded-[5px] flex">Update</button>
         ) : (
           <button onClick={handleAdd} className="animated-btn px-[6rem] mx-auto py-[0.9rem] bg-brnadColor text-white rounded-[5px] flex">Add</button>
         )}
