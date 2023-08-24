@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "../styles/chat.css";
-//import SideBar from "../Components/SideBar";
+import SideBar from "../Components/SideBar";
 
 interface Dish {
   dish_id: number;
@@ -43,15 +43,19 @@ const CrudTableWithApi = () => {
   
 
   const handleAdd = async () => {
-    if (formData.title && formData.price && formData.kind) {
+    const data = {
+      title: formData.title,
+        price: formData.price,
+        kind: formData.kind, 
+        amount: 1
+      };
       try {
-        const response = await fetch('/data-api/rest/dishservicios/', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData),
-        });
+        const endpoint = `/data-api/rest/dishservicios/`;
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
         if (response.ok) {
           fetchData(); // Refresh data after adding
           setFormData({ dish_id: 0, amount: 0, imgURL: '', title: '', price: 0, kind: '' });
@@ -61,34 +65,40 @@ const CrudTableWithApi = () => {
       } catch (error) {
         console.log('Error adding item:', error);
       }
-    }
   };
 
   const handleEdit = (item: Dish) => {
     setEditMode(true);
     setFormData(item);
   };
+
+  async function list() {
+    const endpoint = '/data-api/rest/dishservicios';
+    const response = await fetch(endpoint);
+    const data = await response.json();
+    console.table(data.value);
+  }
   
 
   const handleUpdate = async (dish_id: number) => {
-
+    list();
     const data = {
-        dish_id: formData.dish_id,
-        imgURL: formData.imgURL,
-        title: formData.title,
+      title: formData.title,
         price: formData.price,
         kind: formData.kind, 
-        amount: formData.amount
+        amount: formData.amount,  
+      imgURL: formData.imgURL
       };
 
     try {
-      const response = await fetch(`/data-api/rest/dishservicios/${dish_id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
+      const endpoint = '/data-api/rest/dishservicios/dish_id';
+    const response = await fetch(`${endpoint}/${dish_id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+    const result = await response.json();
+    console.table(result.value);
       if (response.ok) {
         fetchData(); // Refresh data after updating
         setFormData({ dish_id: 0,  amount: 0, imgURL: '', title: '', price: 0, kind: '' });
@@ -118,17 +128,19 @@ const CrudTableWithApi = () => {
 
   return (
     <>
-    {/* <SideBar/> */}
-    <div>
+     <SideBar/> 
+    <div className="wrapperDT w-3/5">
+    <div className="bg-bgColor bg-white rounded-lg shadow-md p-2 md:p-9 w-full">
       <h2>CRUD Table with API</h2>
-      <table>
+      <div className="table-container">
+      <table className="responsive-table">
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Price</th>
-            <th>Kind</th>
-            <th>Actions</th>
+            <th className="rounded-lg shadow-md w-fit">ID</th>
+            <th className="rounded-lg shadow-md w-fit ">Title</th>
+            <th className="rounded-lg shadow-md w-fit ">Price</th>
+            <th className="rounded-lg shadow-md w-fit ">Kind</th>
+            <th className="rounded-lg shadow-md w-fit">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -139,14 +151,18 @@ const CrudTableWithApi = () => {
               <td>{item.price}</td>
               <td>{item.kind}</td>
               <td>
-                <button onClick={() => handleEdit(item)} className="animated-btn px-[6rem] mx-auto py-[0.9rem] bg-brnadColor text-white rounded-[5px] flex">Edit</button>
-                <button onClick={() => handleDelete(item.dish_id)} className="animated-btn px-[6rem] mx-auto py-[0.9rem] bg-brnadColor text-white rounded-[5px] flex">Delete</button>
-              </td>
+              <button onClick={() => handleEdit(item)} className="animated-btn px-[6rem] mx-auto py-[0.9rem] bg-brnadColor text-white rounded-[5px]">Edit</button>
+              <button onClick={() => handleDelete(item.dish_id)} className="animated-btn px-[6rem] mx-auto py-[0.9rem] bg-brnadColor text-white rounded-[5px]">Delete</button>
+              </td>            
             </tr>
+            
           ))}
         </tbody>
       </table>
+      </div>
       <div>
+      <br/>
+          
         <h3>{editMode ? 'Edit Item' : 'Add Item'}</h3>
         <input
           type="text"
@@ -154,7 +170,7 @@ const CrudTableWithApi = () => {
           placeholder="Title"
           value={formData.title}
           onChange={handleInputChange}
-          className="font-[500] mb-2 ml-1"
+          className="font-[500] mb-2 ml-1 shadow-md"
         />
         <input
           type="number"
@@ -162,7 +178,7 @@ const CrudTableWithApi = () => {
           placeholder="Price"
           value={formData.price}
           onChange={handleInputChange}
-          className="font-[500] mb-2 ml-1"
+          className="font-[500] mb-2 ml-1 shadow-md"
         />
         <input
           type="text"
@@ -170,14 +186,17 @@ const CrudTableWithApi = () => {
           placeholder="Kind"
           value={formData.kind}
           onChange={handleInputChange}
-          className="font-[500] mb-2 ml-1"
+          className="font-[500] mb-2 ml-1 shadow-md"
         />
+        <br/>
+        <br/>
         {editMode ? (
           <button onClick={() => handleUpdate(formData.dish_id)} className="animated-btn px-[6rem] mx-auto py-[0.9rem] bg-brnadColor text-white rounded-[5px] flex">Update</button>
         ) : (
           <button onClick={handleAdd} className="animated-btn px-[6rem] mx-auto py-[0.9rem] bg-brnadColor text-white rounded-[5px] flex">Add</button>
         )}
       </div>
+    </div>
     </div>
     </>
   );

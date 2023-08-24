@@ -8,6 +8,14 @@
   margin-left: 38vw;
 }
 
+.wrapperDT {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin-left: 23vw;
+}
+
 .bgColor {
   background-color: rgb(204, 26, 26); /* Replace with your desired background color */
   width: 200px; /* Set the width of the box */
@@ -15,3 +23,29 @@
 }
 
 /* Add any additional custom styles here */
+/* Add these styles to your existing CSS file */
+.table-container {
+  overflow-x: auto; /* Enable horizontal scrolling if needed */
+  overflow-y: auto;
+  max-height: 55vh;
+}
+
+.responsive-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.responsive-table th,
+.responsive-table td {
+  padding: 8px;
+  text-align: left;
+}
+
+/* Add media queries for responsive design */
+@media screen and (max-width: 768px) {
+  .responsive-table th,
+  .responsive-table td {
+    padding: 4px;
+    font-size: 14px;
+  }
+}
