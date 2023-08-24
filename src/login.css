@@ -23,3 +23,27 @@
 }
 
 /* Add any additional custom styles here */
+/* Add these styles to your existing CSS file */
+.table-container {
+  overflow-x: auto; /* Enable horizontal scrolling if needed */
+}
+
+.responsive-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.responsive-table th,
+.responsive-table td {
+  padding: 8px;
+  text-align: left;
+}
+
+/* Add media queries for responsive design */
+@media screen and (max-width: 768px) {
+  .responsive-table th,
+  .responsive-table td {
+    padding: 4px;
+    font-size: 14px;
+  }
+}

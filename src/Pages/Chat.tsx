@@ -129,7 +129,8 @@ const CrudTableWithApi = () => {
     <div className="wrapperDT w-3/5">
     <div className="bg-bgColor bg-white rounded-lg shadow-md p-2 md:p-9 w-full">
       <h2>CRUD Table with API</h2>
-      <table>
+      <div className="table-container">
+      <table className="responsive-table">
         <thead>
           <tr>
             <th className="rounded-lg shadow-md w-fit">ID</th>
@@ -155,6 +156,7 @@ const CrudTableWithApi = () => {
           ))}
         </tbody>
       </table>
+      </div>
       <div>
       <br/>
           
