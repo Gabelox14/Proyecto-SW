@@ -7,10 +7,10 @@ import { RxPerson } from 'react-icons/rx';
 
 
 const ProfileSet = () => {
-  const [firstName, setFirstName] = useState('');
+  const [userName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [id] = useState('');
+  const [userEmail, setEmail] = useState('');
+  const [userID] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -38,25 +38,25 @@ const ProfileSet = () => {
    //}
 
     const searchParams = new URLSearchParams(location.search);
-    const storedFirstName = localStorage.getItem('firstName');
+    const storedFirstName = localStorage.getItem('userName');
     const storedLastName = localStorage.getItem('lastName');
-    const storedEmail = localStorage.getItem('email');
+    const storedEmail = localStorage.getItem('userEmail');
 
-    setFirstName(storedFirstName || searchParams.get('firstName') || '');
+    setFirstName(storedFirstName || searchParams.get('userName') || '');
     setLastName(storedLastName || searchParams.get('lastName') || '');
-    setEmail(storedEmail || searchParams.get('email') || '');
+    setEmail(storedEmail || searchParams.get('userEmail') || '');
   }, [location]);
 
   const handleSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     const searchParams = new URLSearchParams();
-    searchParams.set('firstName', firstName);
+    searchParams.set('userName', userName);
     searchParams.set('lastName', lastName);
-    searchParams.set('email', email);
+    searchParams.set('userEmail', userEmail);
 
-    localStorage.setItem('firstName', firstName);
+    localStorage.setItem('userName', userName);
     localStorage.setItem('lastName', lastName);
-    localStorage.setItem('email', email);
+    localStorage.setItem('userEmail', userEmail);
 
 
     navigate({
@@ -72,12 +72,12 @@ const ProfileSet = () => {
 
     
     const data = {
-      name: firstName +" "+ lastName,
-      email: email
+      name: userName +" "+ lastName,
+      email: userEmail
     };
   
     const endpoint = '/data-api/rest/dbservicios/user_id';
-    const response = await fetch(`${endpoint}/${id}`, {
+    const response = await fetch(`${endpoint}/${userID}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)
@@ -107,7 +107,7 @@ const ProfileSet = () => {
                   className="border-none focus:outline-none text-sm pl-2 lg:pl-4 md:pl-4 h-12 w-[100%] bg-[#efeeee]/[0.5] border-transparent rounded-lg"
                   type="text"
                   placeholder="Enter your First Name"
-                  value={firstName}
+                  value={userName}
                   onChange={(e) => setFirstName(e.target.value)}
                 />
               </div>
@@ -137,7 +137,7 @@ const ProfileSet = () => {
               className="border-none focus:outline-none text-sm pl-6 h-12 w-[80%] bg-[#efeeee]/[0.5] border-transparent rounded-lg"
               type="email"
               placeholder="sample@email.com"
-              value={email}
+              value={userEmail}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
