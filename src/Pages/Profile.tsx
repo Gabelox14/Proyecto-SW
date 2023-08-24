@@ -60,13 +60,17 @@ const Profile = () => {
   async function update() {
 
     
+    const storedID = sessionStorage.getItem('userID');
+    const storedPassword = sessionStorage.getItem('userPassword');
+
     const data = {
       name: userName ,
-      email: userEmail
+      email: userEmail,
+      password: storedPassword
     };
   
     const endpoint = '/data-api/rest/dbservicios/user_id';
-    const response = await fetch(`${endpoint}/${userID}`, {
+    const response = await fetch(`${endpoint}/${storedID}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)

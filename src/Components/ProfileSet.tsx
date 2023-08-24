@@ -65,10 +65,11 @@ const ProfileSet = () => {
 
   async function update() {
     const storedID = sessionStorage.getItem('userID');
-    
+    const storedPassword = sessionStorage.getItem('userPassword');
     const data = {
       name: userName ,
-      email: userEmail
+      email: userEmail,
+      password: storedPassword
     };
   
     const endpoint = '/data-api/rest/dbservicios/user_id';
