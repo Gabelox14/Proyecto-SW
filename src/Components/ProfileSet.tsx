@@ -8,7 +8,6 @@ import { RxPerson } from 'react-icons/rx';
 
 const ProfileSet = () => {
   const [userName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
   const [userEmail, setEmail] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
@@ -38,12 +37,10 @@ const ProfileSet = () => {
 
     const searchParams = new URLSearchParams(location.search);
     const storedFirstName = sessionStorage.getItem('userName');
-    const storedLastName = sessionStorage.getItem('lastName');
     const storedEmail = sessionStorage.getItem('userEmail');
     
 
     setFirstName(storedFirstName || searchParams.get('userName') || '');
-    setLastName(storedLastName || searchParams.get('lastName') || '');
     setEmail(storedEmail || searchParams.get('userEmail') || '');
   }, [location]);
 
@@ -51,11 +48,9 @@ const ProfileSet = () => {
     e.preventDefault();
     const searchParams = new URLSearchParams();
     searchParams.set('userName', userName);
-    searchParams.set('lastName', lastName);
     searchParams.set('userEmail', userEmail);
 
     sessionStorage.setItem('userName', userName);
-    sessionStorage.setItem('lastName', lastName);
     sessionStorage.setItem('userEmail', userEmail);
 
 
@@ -72,7 +67,7 @@ const ProfileSet = () => {
     const storedID = sessionStorage.getItem('userID');
     
     const data = {
-      name: userName +" "+ lastName,
+      name: userName ,
       email: userEmail
     };
   
@@ -100,7 +95,7 @@ const ProfileSet = () => {
           <div className="flex md:gap-x-4 md:justify-around gap-y-9 md:gap-y-0 lg:justify-around gap-x-4 flex-col sm:flex-row ml-[4%] w-[80%] sm:full md:w-[90%]">
             <div className="">
               <label htmlFor="firstName" className="font-[500] mb-2 ml-1">
-                First Name
+                 Name
               </label>
               <div className="w-[24rem]">
                 <input
@@ -112,20 +107,7 @@ const ProfileSet = () => {
                 />
               </div>
             </div>
-            <div>
-              <label htmlFor="lastName" className="font-[500] mb-2 ml-1">
-                Last Name
-              </label>
-              <div className="md:w-[100%] w-[100%] lg:w-[24rem]">
-                <input
-                  className="border-none focus:outline-none text-sm pl-6 h-12 w-[100%] bg-[#efeeee]/[0.5] border-transparent rounded-lg"
-                  type="text"
-                  placeholder="Enter your Last Name"
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
-                />
-              </div>
-            </div>
+            
           </div>
         </div>
         <div className="flex flex-col justify-center md:items-center mb-10 mt-8">

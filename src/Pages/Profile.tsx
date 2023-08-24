@@ -40,7 +40,6 @@ import "../styles/profile.css";
 
 const Profile = () => {
   const [userName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
   const [userEmail, setEmail] = useState('');
   const [userID] = useState('');
 
@@ -49,11 +48,9 @@ const Profile = () => {
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const storedFirstName = sessionStorage.getItem('userName');
-    const storedLastName = sessionStorage.getItem('lastName');
     const storedEmail = sessionStorage.getItem('userEmail');
 
     setFirstName(searchParams.get('userName') || storedFirstName || '');
-    setLastName(searchParams.get('lastName') || storedLastName || '');
     setEmail(searchParams.get('userEmail') || storedEmail || '');
   }, [location]);
 
@@ -64,7 +61,7 @@ const Profile = () => {
 
     
     const data = {
-      name: userName + " "+ lastName,
+      name: userName ,
       email: userEmail
     };
   
@@ -85,8 +82,7 @@ const Profile = () => {
         <section className="profile-container">
             <section className="profile-details">
               <h1>Your Profile</h1>
-              <p className="profile-loc">First Name: {userName}</p>
-              <p className="profile-loc">Last Name: {lastName}</p>
+              <p className="profile-loc">Name: {userName}</p>
               <p className="profile-loc">Email: {userEmail}</p>
               <Link to="/settings"><button className="animated-btn mt-6" onClick={update}>Update profile</button></Link>
             </section>
