@@ -27,10 +27,14 @@ function Login() {
       for (let i = 0; i < result.value.length; i++) {
         const user = result.value[i];
         const userID = user.user_id; 
+        const userName = user.name; 
+        const userEmail = user.email; 
 
         if (user.email === email) {
           console.log('ID del usuario almacenado:', userID);
           sessionStorage.setItem('userID', userID);
+          sessionStorage.setItem('userName', userName);
+          sessionStorage.setItem('userEmail', userEmail);
           navigate("/home");
         }
       }

@@ -39,22 +39,22 @@ import { Link } from 'react-router-dom';
 import "../styles/profile.css";
 
 const Profile = () => {
-  const [firstName, setFirstName] = useState('');
+  const [userName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [id] = useState('');
+  const [userEmail, setEmail] = useState('');
+  const [userID] = useState('');
 
   const location = useLocation();
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
-    const storedFirstName = localStorage.getItem('firstName');
+    const storedFirstName = localStorage.getItem('userName');
     const storedLastName = localStorage.getItem('lastName');
-    const storedEmail = localStorage.getItem('email');
+    const storedEmail = localStorage.getItem('userEmail');
 
-    setFirstName(searchParams.get('firstName') || storedFirstName || '');
+    setFirstName(searchParams.get('userName') || storedFirstName || '');
     setLastName(searchParams.get('lastName') || storedLastName || '');
-    setEmail(searchParams.get('email') || storedEmail || '');
+    setEmail(searchParams.get('userEmail') || storedEmail || '');
   }, [location]);
 
   
@@ -64,12 +64,12 @@ const Profile = () => {
 
     
     const data = {
-      name: firstName + " "+ lastName,
-      email: email
+      name: userName + " "+ lastName,
+      email: userEmail
     };
   
     const endpoint = '/data-api/rest/dbservicios/user_id';
-    const response = await fetch(`${endpoint}/${id}`, {
+    const response = await fetch(`${endpoint}/${userID}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)
@@ -85,9 +85,9 @@ const Profile = () => {
         <section className="profile-container">
             <section className="profile-details">
               <h1>Your Profile</h1>
-              <p className="profile-loc">First Name: {firstName}</p>
+              <p className="profile-loc">First Name: {userName}</p>
               <p className="profile-loc">Last Name: {lastName}</p>
-              <p className="profile-loc">Email: {email}</p>
+              <p className="profile-loc">Email: {userEmail}</p>
               <Link to="/settings"><button className="animated-btn mt-6" onClick={update}>Update profile</button></Link>
             </section>
         </section>
