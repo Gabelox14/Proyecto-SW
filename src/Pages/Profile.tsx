@@ -41,7 +41,7 @@ import "../styles/profile.css";
 const Profile = () => {
   const [userName, setFirstName] = useState('');
   const [userEmail, setEmail] = useState('');
-  const [userID] = useState('');
+
 
   const location = useLocation();
 
