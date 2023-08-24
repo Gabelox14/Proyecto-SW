@@ -1,7 +1,6 @@
 import "../styles/button.css";
 import { SetStateAction, useState } from 'react';
 import { RiEyeFill, RiEyeOffFill } from 'react-icons/ri';
-import {  useLocation } from 'react-router-dom';
 
 
 const Security = () => {
