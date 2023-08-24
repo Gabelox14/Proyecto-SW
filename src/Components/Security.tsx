@@ -1,13 +1,25 @@
 import "../styles/button.css";
-import { SetStateAction, useState } from 'react';
+import { SetStateAction, useState,useEffect } from 'react';
 import { RiEyeFill, RiEyeOffFill } from 'react-icons/ri';
+import {  useLocation } from 'react-router-dom';
 
 
 const Security = () => {
 
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [userID] = useState('');
 
+  const location = useLocation();
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const storedPassword = sessionStorage.getItem('userPassword');
+    
+
+    setPassword(searchParams.get('userPassword') || storedPassword || '');
+  }, [location]);
+  
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -15,6 +27,23 @@ const Security = () => {
   const handlePasswordChange = (event: { target: { value: SetStateAction<string>; }; }) => {
     setPassword(event.target.value);
   };
+
+  async function update() {
+
+    
+    const data = {
+      password: password
+    };
+  
+    const endpoint = '/data-api/rest/dbservicios/user_id';
+    const response = await fetch(`${endpoint}/${userID}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+    const result = await response.json();
+    console.table(result.value);
+  }
 
   return (
     <>
@@ -60,7 +89,7 @@ const Security = () => {
                 <button
                   type="button"
                   className="absolute right-2 top-1/2 transform -translate-y-1/2 focus:outline-none"
-                  onClick={togglePasswordVisibility}
+                  onClick={update}
                 >
                   {showPassword ? (
                     <RiEyeOffFill className="text-gray-500" />

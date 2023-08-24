@@ -29,12 +29,14 @@ function Login() {
         const userID = user.user_id; 
         const userName = user.name; 
         const userEmail = user.email; 
+        const userPassword = user.password; 
 
         if (user.email === email) {
           console.log('ID del usuario almacenado:', userID);
           sessionStorage.setItem('userID', userID);
           sessionStorage.setItem('userName', userName);
           sessionStorage.setItem('userEmail', userEmail);
+          sessionStorage.setItem('userPassword', userPassword);
           navigate("/home");
         }
       }
