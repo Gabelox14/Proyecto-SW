@@ -1,5 +1,5 @@
 import "../styles/button.css";
-import { SetStateAction, useState,useEffect } from 'react';
+import { SetStateAction, useState } from 'react';
 import { RiEyeFill, RiEyeOffFill } from 'react-icons/ri';
 import {  useLocation } from 'react-router-dom';
 
@@ -10,7 +10,6 @@ const Security = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [userID] = useState('');
 
-  const location = useLocation();
 
   
   const togglePasswordVisibility = () => {
