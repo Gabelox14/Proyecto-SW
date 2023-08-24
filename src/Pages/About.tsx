@@ -11,36 +11,29 @@ const About = () => {
             About Food Fleet
           </h1>
           <p className="text-white">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            FoodFleet es una plataforma en línea especializada en entregas de alimentos a domicilio,
+           diseñada como parte de un proyecto final. Su principal objetivo es proporcionar a los usuarios
+           una experiencia culinaria excepcional y conveniente a través de un sistema eficiente para gestionar
+           pedidos de alimentos en línea. La plataforma se destaca por su interfaz intuitiva que permite a los
+         usuarios explorar una amplia variedad de opciones gastronómicas en su área, desde comida rápida hasta
+         establecimientos gourmet.
           </p>
           <p className="text-white">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            Una característica distintiva de FoodFleet es la personalización de pedidos, permitiendo a los usuarios
+           adaptar sus comidas según sus preferencias individuales, ya sea agregando ingredientes extra o solicitando
+           opciones dietéticas específicas. Además de facilitar la selección y personalización de pedidos, la plataforma
+           se enfoca en la gestión eficiente de los mismos. Con un sistema integrado y optimizado, se garantiza un procesamiento rápido
+           y preciso de los pedidos, mejorando la eficiencia operativa y reduciendo los tiempos de espera.
           </p>
           <p className="text-white">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            FoodFleet se ha desarrollado con una interfaz intuitiva, tecnologías modernas y una infraestructura confiable,
+           todo con el propósito de brindar a los usuarios una experiencia culinaria excepcional. Con su enfoque en la eficiencia y seguridad,
+           la plataforma asegura una experiencia de usuario excepcional en cada pedido realizado.
           </p>
         </div>
         <div className="p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center">
           <a className="text-brandColor" href="https://example.com">
-            sample@email.com
+            foodfleet@email.com
           </a>
           <p className="leading-normal my-5 text-white">
             123 Avenida Universidad.
