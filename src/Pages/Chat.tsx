@@ -149,10 +149,7 @@ const CrudTableWithApi = () => {
               <td>
               <button onClick={() => handleEdit(item)} className="animated-btn px-[6rem] mx-auto py-[0.9rem] bg-brnadColor text-white rounded-[5px]">Edit</button>
               <button onClick={() => handleDelete(item.dish_id)} className="animated-btn px-[6rem] mx-auto py-[0.9rem] bg-brnadColor text-white rounded-[5px]">Delete</button>
-              </td>
-
-              <br/>
-              <br/>            
+              </td>            
             </tr>
             
           ))}
@@ -160,7 +157,7 @@ const CrudTableWithApi = () => {
       </table>
       <div>
       <br/>
-              <br/>
+          
         <h3>{editMode ? 'Edit Item' : 'Add Item'}</h3>
         <input
           type="text"
