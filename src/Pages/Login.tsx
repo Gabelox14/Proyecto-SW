@@ -18,24 +18,25 @@ function Login() {
   //}
 
   async function get() {
-    const endpoint = `/data-api/rest/dbservicios/`;
-    const response = await fetch(`${endpoint}`);
-    const result = await response.json();
-    console.table(result.value);
+    try {
+      const endpoint = '/data-api/rest/dbservicios/';
+      const response = await fetch(endpoint);
+      const result = await response.json();
+      console.table(result.value);
 
-    const userID = result.value[0];
-    sessionStorage.setItem("userID", userID);
+      for (let i = 0; i < result.value.length; i++) {
+        const user = result.value[i];
+        const userID = user.id; // Assuming the user ID is stored in the 'id' property
 
-    if (userID.email === email) {
-      console.log("ID del usuario almacenado:", email);
-      // var storedUserID = sessionStorage.getItem("userID");
-      // if (storedUserID) {
-      //   console.log("ID del usuario almacenado:", storedUserID);
-      // } else {
-      //   console.log("No se encontró ningún ID de usuario almacenado.");
-      // }
+        if (user.email === email) {
+          console.log('ID del usuario almacenado:', userID);
+          sessionStorage.setItem('userID', userID);
+        }
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
     }
-  }
+}
 
     //async function update() {
     //
