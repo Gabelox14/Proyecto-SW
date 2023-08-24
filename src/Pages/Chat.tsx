@@ -35,7 +35,7 @@ const CrudTableWithApi = () => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     if (name === "price") {
-        setFormData({ ...formData, [name]: parseInt(value) }); // Parse the string to a float
+        setFormData({ ...formData, [name]: parseFloat(value) }); // Parse the string to a float
       } else {
         setFormData({ ...formData, [name]: value });
       }
